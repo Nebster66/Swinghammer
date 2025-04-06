@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://cw5hxbyevw7wx"]
+
+[ext_resource type="Theme" uid="uid://bfmhlm5dgdsvs" path="res://sprites/UI/UI.tres" id="1_dj8aq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ua6yw"]
+load_path = "res://.godot/imported/UI_Medieval.png-4f88a28d7123ec6284e605afb54ab839.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll0sn"]
+atlas = SubResource("CompressedTexture2D_ua6yw")
+region = Rect2(224, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dj8aq"]
+atlas = SubResource("CompressedTexture2D_ua6yw")
+region = Rect2(240, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro3t7"]
+atlas = SubResource("CompressedTexture2D_ua6yw")
+region = Rect2(240, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5en4g"]
+atlas = SubResource("CompressedTexture2D_ua6yw")
+region = Rect2(240, 112, 16, 16)
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TOP" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+offset_right = 108.0
+offset_bottom = 30.0
+theme = ExtResource("1_dj8aq")
+
+[node name="Button" type="Button" parent="TOP"]
+layout_mode = 2
+theme_override_constants/align_to_largest_stylebox = 1
+icon = SubResource("AtlasTexture_ll0sn")
+flat = true
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="TOP"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 16
+theme_override_constants/align_to_largest_stylebox = 1
+icon = SubResource("AtlasTexture_dj8aq")
+flat = true
+
+[node name="Button3" type="Button" parent="TOP"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 16
+theme_override_constants/align_to_largest_stylebox = 1
+icon = SubResource("AtlasTexture_ro3t7")
+flat = true
+
+[node name="Button4" type="Button" parent="TOP"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 16
+theme_override_constants/align_to_largest_stylebox = 1
+icon = SubResource("AtlasTexture_5en4g")
+flat = true

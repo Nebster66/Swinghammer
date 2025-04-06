@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://4q7kjig7dg1q"
+path="res://.godot/imported/Bullets, Impact, Metal, Heavy, Powerful, Hard SND6400.wav-9dbd46d96de79d60d97ec9339a26a521.sample"
+
+[deps]
+
+source_file="res://audio/sfx/Bullets, Impact, Metal, Heavy, Powerful, Hard SND6400.wav"
+dest_files=["res://.godot/imported/Bullets, Impact, Metal, Heavy, Powerful, Hard SND6400.wav-9dbd46d96de79d60d97ec9339a26a521.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://5lob7krc5d7q"]
+
+[ext_resource type="Texture2D" uid="uid://3dqfh4324od3" path="res://sprites/NewAnvil32x32.png" id="1_dnwij"]
+[ext_resource type="Texture2D" uid="uid://d1rpupfmvpo52" path="res://sprites/N_NewAnvil32x32.png" id="2_xlk5k"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3tbft"]
+diffuse_texture = ExtResource("1_dnwij")
+normal_texture = ExtResource("2_xlk5k")
+
+[node name="Anvil" type="StaticBody2D" groups=["bounceable"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_3tbft")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." groups=["bounceable"]]
+polygon = PackedVector2Array(16, 0, 16, 2, 10, 4, 7, 8, 6, 10, 6, 12, 11, 14, 11, 16, -7, 16, -7, 14, -2, 12, -2, 8, -10, 5, -16, 2, -16, 1, -6, 1, -6, 0)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ru7wu332wo3j"]
+
+[ext_resource type="Script" uid="uid://dg84ecqr1pjxy" path="res://addons/swing_object_2d.gd" id="1_8gqxy"]
+[ext_resource type="Texture2D" uid="uid://cl7jqeu7sdqa3" path="res://sprites/Anvil32x32.png" id="2_u4aot"]
+
+[node name="GrabAnvil" type="RigidBody2D"]
+input_pickable = true
+script = ExtResource("1_8gqxy")
+
+[node name="Anvil32x32" type="Sprite2D" parent="."]
+position = Vector2(-1, -6)
+texture = ExtResource("2_u4aot")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." groups=["bounceable"]]
+position = Vector2(-1, -6)
+polygon = PackedVector2Array(16, 0, 16, 2, 10, 4, 7, 8, 6, 10, 6, 12, 11, 14, 11, 16, -7, 16, -7, 14, -2, 12, -2, 8, -10, 5, -16, 2, -16, 1, -6, 1, -6, 0)
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

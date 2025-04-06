@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://1ditmnxofc8i"]
+
+[ext_resource type="Script" uid="uid://ce0bi3ohql3k7" path="res://scripts/steel_bar.gd" id="1_gk737"]
+[ext_resource type="PackedScene" uid="uid://xmx0p1xhxwsn" path="res://scenes/steel_tile.tscn" id="2_cfhqu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a63ry"]
+size = Vector2(6.5, 6)
+
+[node name="SteelBar" type="RigidBody2D" groups=["steel"]]
+input_pickable = true
+mass = 2.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_gk737")
+steel_tile_scene = ExtResource("2_cfhqu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["hammer"]]
+z_index = 1
+shape = SubResource("RectangleShape2D_a63ry")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]

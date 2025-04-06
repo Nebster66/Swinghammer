@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://i3u5mbgh805l"]
+
+[ext_resource type="Texture2D" uid="uid://b5kemprbfotlj" path="res://sprites/Furnace.png" id="1_edvgy"]
+[ext_resource type="Script" uid="uid://dg84ecqr1pjxy" path="res://addons/swing_object_2d.gd" id="2_joa2q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jqiv5"]
+radius = 16.0
+
+[node name="GrabTest" type="Node2D"]
+
+[node name="SwingObject2D" type="RigidBody2D" parent="."]
+input_pickable = true
+script = ExtResource("2_joa2q")
+
+[node name="Sprite2D" type="Sprite2D" parent="SwingObject2D"]
+texture = ExtResource("1_edvgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwingObject2D"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_jqiv5")

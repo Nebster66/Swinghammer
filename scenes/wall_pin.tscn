@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4sd00yqu6ur8"]
+
+[ext_resource type="Texture2D" uid="uid://cmyk8isvud7c3" path="res://sprites/SteelPixel-Sheet.png" id="1_wh10p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igwpj"]
+size = Vector2(1, 1)
+
+[node name="WallPin" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wh10p")
+region_enabled = true
+region_rect = Rect2(4, 0, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_igwpj")

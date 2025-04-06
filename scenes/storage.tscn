@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://5l6m3lfa2x14"]
+
+[ext_resource type="Texture2D" uid="uid://q33bqdktw8tm" path="res://sprites/SmallCage.png" id="1_nnb4j"]
+
+[node name="Storage" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("1_nnb4j")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-10, -7, -10, 7, 10, 7, 10, -7, 9, -7, 9, 5, -9, 5, -9, -7)

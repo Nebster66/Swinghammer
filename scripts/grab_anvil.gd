@@ -1,0 +1,1 @@
+extends SwingObject2D

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b26ghdrrdwybp"
+path="res://.godot/imported/Fire, Whoosh, Deep, Complex, Cinematic, Trailer, Fire 05 SND72132.wav-0099d460b2202a530105da3ae3a7d9a1.sample"
+
+[deps]
+
+source_file="res://audio/sfx/Fire, Whoosh, Deep, Complex, Cinematic, Trailer, Fire 05 SND72132.wav"
+dest_files=["res://.godot/imported/Fire, Whoosh, Deep, Complex, Cinematic, Trailer, Fire 05 SND72132.wav-0099d460b2202a530105da3ae3a7d9a1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

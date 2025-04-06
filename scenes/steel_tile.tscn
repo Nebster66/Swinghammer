@@ -1,0 +1,103 @@
+[gd_scene load_steps=11 format=3 uid="uid://xmx0p1xhxwsn"]
+
+[ext_resource type="Script" uid="uid://boftx6uoyytpw" path="res://scripts/steel_tile.gd" id="1_gtcer"]
+[ext_resource type="Texture2D" uid="uid://c6am46f6neggl" path="res://sprites/SteelPixel-Sheet2x2.png" id="1_y32q8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6aqr"]
+atlas = ExtResource("1_y32q8")
+region = Rect2(8, 0, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8aedb"]
+atlas = ExtResource("1_y32q8")
+region = Rect2(10, 0, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejl0k"]
+atlas = ExtResource("1_y32q8")
+region = Rect2(0, 0, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_medut"]
+atlas = ExtResource("1_y32q8")
+region = Rect2(6, 0, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkh3h"]
+atlas = ExtResource("1_y32q8")
+region = Rect2(4, 0, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu22h"]
+atlas = ExtResource("1_y32q8")
+region = Rect2(2, 0, 2, 2)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nhprg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6aqr")
+}],
+"loop": true,
+"name": &"quenched",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8aedb")
+}],
+"loop": true,
+"name": &"sharp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejl0k")
+}],
+"loop": true,
+"name": &"temp_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_medut")
+}],
+"loop": true,
+"name": &"temp_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkh3h")
+}],
+"loop": true,
+"name": &"temp_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu22h")
+}],
+"loop": true,
+"name": &"temp_3",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6pkhk"]
+size = Vector2(2, 2)
+
+[node name="SteelTile" type="StaticBody2D"]
+z_index = 1
+collision_layer = 3
+script = ExtResource("1_gtcer")
+
+[node name="SteelTileSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nhprg")
+animation = &"temp_0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6pkhk")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6pkhk")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

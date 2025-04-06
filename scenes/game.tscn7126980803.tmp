@@ -1,0 +1,205 @@
+[gd_scene load_steps=24 format=4 uid="uid://dwe482lrkiq6d"]
+
+[ext_resource type="PackedScene" uid="uid://c2sojmd64xekr" path="res://scenes/backgrounds.tscn" id="1_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://bq6qm4o33g2vc" path="res://scenes/grindstone.tscn" id="1_pt2ai"]
+[ext_resource type="PackedScene" uid="uid://cw5hxbyevw7wx" path="res://scenes/UI.tscn" id="1_trtic"]
+[ext_resource type="Script" uid="uid://bsc1mlio8enbu" path="res://scripts/canvas_modulate.gd" id="2_dinhu"]
+[ext_resource type="PackedScene" uid="uid://5lob7krc5d7q" path="res://scenes/anvil.tscn" id="4_o70pb"]
+[ext_resource type="PackedScene" uid="uid://c6whenmval02w" path="res://scenes/water_barrel.tscn" id="5_81pp8"]
+[ext_resource type="PackedScene" uid="uid://c4sd00yqu6ur8" path="res://scenes/wall_pin.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://4b64dirk2j2m" path="res://scenes/swing_hammer.tscn" id="8_dv0jt"]
+[ext_resource type="TileSet" uid="uid://d02fmsbyyx0vp" path="res://sprites/Tilesets/WorkshopWallsTileset.tres" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://brbhxoo1l6rv6" path="res://scenes/small_furnace.tscn" id="9_ir15t"]
+[ext_resource type="PackedScene" uid="uid://1ditmnxofc8i" path="res://scenes/steel_bar.tscn" id="10_epqd0"]
+[ext_resource type="PackedScene" uid="uid://mkdjq3hd1lae" path="res://scenes/wall_torch.tscn" id="10_vtaks"]
+[ext_resource type="PackedScene" uid="uid://biliu5ug840bo" path="res://scenes/mouse.tscn" id="11_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://c02ej5nq6giwy" path="res://scenes/shop_sign.tscn" id="13_kvuet"]
+[ext_resource type="PackedScene" uid="uid://5l6m3lfa2x14" path="res://scenes/storage.tscn" id="15_ca42v"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lxd2q"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gee14"]
+polygon = PackedVector2Array(108, -121, 108, -146, 106, -146, 106, -141, 107, -141, 107, -122, 63.0003, -88, 65.0003, -88)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cxjwm"]
+distance = 6.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p57ef"]
+polygon = PackedVector2Array(-32, 29.6, -32, 40, 32, 40, 32, 29.6)
+
+[sub_resource type="Gradient" id="Gradient_qoskp"]
+colors = PackedColorArray(0.295867, 0.295866, 0.295866, 1, 0.419813, 0.419813, 0.419813, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0vdgn"]
+gradient = SubResource("Gradient_qoskp")
+height = 8
+fill_from = Vector2(1, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ddes0"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0tnpc"]
+polygon = PackedVector2Array(160, -88, 158, -88, 116, -120, 116, -146, 118, -146, 118, -141, 117, -141, 117, -121)
+
+[node name="Game" type="Node2D"]
+
+[node name="Util" type="Node2D" parent="."]
+
+[node name="UtilMenu" parent="Util" instance=ExtResource("1_trtic")]
+offset_left = -160.0
+offset_top = -90.0
+offset_right = -160.0
+offset_bottom = -90.0
+
+[node name="Camera2D" type="Camera2D" parent="Util"]
+zoom = Vector2(4, 4)
+
+[node name="Mouse" parent="Util" instance=ExtResource("11_kvpfn")]
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Background"]
+script = ExtResource("2_dinhu")
+
+[node name="Backgrounds" parent="Background" instance=ExtResource("1_0tnpc")]
+position = Vector2(0, 4.44089e-16)
+scale = Vector2(0.139034, 0.139034)
+
+[node name="Inside" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Inside"]
+color = Color(0.864675, 0.864675, 0.864675, 1)
+script = ExtResource("2_dinhu")
+
+[node name="TilemapLayers" type="Node2D" parent="Inside"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Inside/TilemapLayers"]
+tile_map_data = PackedByteArray("AAD+/wAAAAACAAAAAAAAAAAAAAACAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAD//wAAAAAEAAAAAAD9/wAAAAAAAAAAAAA=")
+tile_set = ExtResource("8_gee14")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="Inside/TilemapLayers"]
+tile_map_data = PackedByteArray("AAD//wAAAAAKAAAAAAD+/wAAAAAJAAAAAAABAAAAAAAJAAAAAAA=")
+tile_set = ExtResource("8_gee14")
+
+[node name="WorldBorder" type="StaticBody2D" parent="Inside"]
+position = Vector2(0, 82)
+
+[node name="Left" type="CollisionShape2D" parent="Inside/WorldBorder"]
+position = Vector2(-160, -82)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_lxd2q")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Inside/WorldBorder/Left"]
+position = Vector2(81.9994, -156)
+rotation = -1.5708
+occluder = SubResource("OccluderPolygon2D_gee14")
+
+[node name="Ground" type="CollisionShape2D" parent="Inside/WorldBorder"]
+position = Vector2(0, -11)
+shape = SubResource("WorldBoundaryShape2D_cxjwm")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Inside/WorldBorder/Ground"]
+position = Vector2(0, -81)
+scale = Vector2(5, 2.5)
+occluder = SubResource("OccluderPolygon2D_p57ef")
+
+[node name="Sprite2D" type="Sprite2D" parent="Inside/WorldBorder/Ground"]
+position = Vector2(0, 6)
+scale = Vector2(5, 3.26172)
+texture = SubResource("GradientTexture2D_0vdgn")
+
+[node name="Right" type="CollisionShape2D" parent="Inside/WorldBorder"]
+position = Vector2(160, -82)
+shape = SubResource("WorldBoundaryShape2D_ddes0")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Inside/WorldBorder/Right"]
+position = Vector2(-164, 82)
+occluder = SubResource("OccluderPolygon2D_0tnpc")
+
+[node name="Lighting" type="Node2D" parent="Inside"]
+
+[node name="WallTorch" parent="Inside/Lighting" instance=ExtResource("10_vtaks")]
+position = Vector2(-125, 24)
+
+[node name="WallTorch2" parent="Inside/Lighting" instance=ExtResource("10_vtaks")]
+z_index = 2
+position = Vector2(-3, 24)
+
+[node name="WallTorch3" parent="Inside/Lighting" instance=ExtResource("10_vtaks")]
+z_index = 2
+position = Vector2(67, 24)
+
+[node name="Grindstone" parent="Inside" instance=ExtResource("1_pt2ai")]
+position = Vector2(-64, 57)
+
+[node name="Furnace2" parent="Inside" instance=ExtResource("9_ir15t")]
+z_index = 1
+position = Vector2(92, 32)
+
+[node name="Anvil" parent="Inside" instance=ExtResource("4_o70pb")]
+position = Vector2(32, 49)
+
+[node name="WaterBarrel" parent="Inside" instance=ExtResource("5_81pp8")]
+position = Vector2(-144, 51)
+
+[node name="SwingHammer" parent="Inside" instance=ExtResource("8_dv0jt")]
+position = Vector2(-64, 15)
+
+[node name="SteelBar" parent="Inside" instance=ExtResource("10_epqd0")]
+z_index = -1
+position = Vector2(-101, 47)
+rotation = 1.74533
+mass = 10.0
+
+[node name="SteelBar2" parent="Inside" instance=ExtResource("10_epqd0")]
+z_index = -1
+position = Vector2(-97, 47)
+rotation = 1.74533
+mass = 10.0
+tile_count = 9
+
+[node name="SteelBar4" parent="Inside" instance=ExtResource("10_epqd0")]
+z_index = -1
+position = Vector2(-93, 47)
+rotation = 1.74533
+mass = 10.0
+tile_count = 10
+
+[node name="SteelBar5" parent="Inside" instance=ExtResource("10_epqd0")]
+z_index = -1
+position = Vector2(-89, 47)
+rotation = 1.74533
+mass = 10.0
+tile_count = 9
+
+[node name="HammerPins" type="Node2D" parent="Inside"]
+position = Vector2(-2, -14)
+
+[node name="WallPin" parent="Inside/HammerPins" instance=ExtResource("7_u5sy4")]
+position = Vector2(-65, 25)
+
+[node name="WallPin2" parent="Inside/HammerPins" instance=ExtResource("7_u5sy4")]
+position = Vector2(-59, 25)
+
+[node name="Storage" parent="Inside" instance=ExtResource("15_ca42v")]
+position = Vector2(-96, 58)
+
+[node name="Roof" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Roof"]
+script = ExtResource("2_dinhu")
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="Roof"]
+z_index = 2
+tile_map_data = PackedByteArray("AAD9////AAAFAAAAAAD/////AAAFAAAAAAAAAP//AAAFAAAAAAABAP//AAAGAAAAAAACAP//AAAFAAAAAAD+////AAAFAAAAAAA=")
+tile_set = ExtResource("8_gee14")
+
+[node name="ShopSign" parent="Roof" instance=ExtResource("13_kvuet")]
+visible = false
+z_index = 3
+position = Vector2(-153, -22)

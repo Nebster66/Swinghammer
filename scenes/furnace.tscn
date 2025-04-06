@@ -1,0 +1,150 @@
+[gd_scene load_steps=22 format=3 uid="uid://i1h67kcuuk0w"]
+
+[ext_resource type="Script" uid="uid://saf20cgkm6oh" path="res://scripts/furnace.gd" id="1_0uoyi"]
+[ext_resource type="Texture2D" uid="uid://fplrsjnjo5ua" path="res://sprites/Charcoals-Sheet.png" id="1_61l8k"]
+[ext_resource type="PackedScene" uid="uid://dprutpg3k0vgy" path="res://scenes/FX/furnace_smoke.tscn" id="2_kcyua"]
+[ext_resource type="PackedScene" uid="uid://cpjyw4m88sh8e" path="res://scenes/FX/flame.tscn" id="3_s82ge"]
+[ext_resource type="Texture2D" uid="uid://bimfsnlh8nbgm" path="res://sprites/Furnace64x64.png" id="5_5cqhb"]
+[ext_resource type="Script" uid="uid://6i82qnbeinjo" path="res://scripts/point_light_flicker.gd" id="6_5cqhb"]
+[ext_resource type="PackedScene" uid="uid://dh7i1sculfnd1" path="res://scenes/Bellows.tscn" id="7_uxcy8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cqhb"]
+atlas = ExtResource("1_61l8k")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61l8k"]
+atlas = ExtResource("1_61l8k")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uoyi"]
+atlas = ExtResource("1_61l8k")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcyua"]
+atlas = ExtResource("1_61l8k")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s82ge"]
+atlas = ExtResource("1_61l8k")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5cqhb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cqhb")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61l8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uoyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcyua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s82ge")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_uxcy8"]
+diffuse_texture = ExtResource("5_5cqhb")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y7ne"]
+size = Vector2(64, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61l8k"]
+size = Vector2(60, 1)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_s82ge"]
+polygon = PackedVector2Array(-4, -6, -2, -8, -10, -26, -20, -20, -26, -10)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5cqhb"]
+polygon = PackedVector2Array(4, -6, 26, -10, 20, -20, 10, -26, 2, -8)
+
+[sub_resource type="Gradient" id="Gradient_uxcy8"]
+offsets = PackedFloat32Array(0, 0.733766)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s82ge"]
+gradient = SubResource("Gradient_uxcy8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cqhb"]
+size = Vector2(28, 2)
+
+[node name="Furnace" type="StaticBody2D" groups=["furnace"]]
+input_pickable = true
+script = ExtResource("1_0uoyi")
+
+[node name="FurnaceSmoke" parent="." instance=ExtResource("2_kcyua")]
+position = Vector2(0, 9)
+emitting = false
+amount = 750
+lifetime = 12.0
+
+[node name="Flame" parent="." instance=ExtResource("3_s82ge")]
+position = Vector2(0, 8)
+emitting = false
+
+[node name="Charcoals" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(-7, 5)
+sprite_frames = SubResource("SpriteFrames_5cqhb")
+animation = &"off"
+
+[node name="Charcoals2" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(7, 5)
+sprite_frames = SubResource("SpriteFrames_5cqhb")
+animation = &"off"
+
+[node name="Furnace" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_uxcy8")
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, -12, 8, -12, 30, -16, 24, -26, 14, -32, -14, -32, -24, -26, -30, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 21)
+shape = SubResource("RectangleShape2D_0y7ne")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_61l8k")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-4, -6)
+occluder = SubResource("OccluderPolygon2D_s82ge")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+position = Vector2(4, -6)
+occluder = SubResource("OccluderPolygon2D_5cqhb")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 8)
+scale = Vector2(2, 1)
+color = Color(0.761045, 0.573057, 0, 1)
+range_z_max = 3
+texture = SubResource("GradientTexture2D_s82ge")
+script = ExtResource("6_5cqhb")
+
+[node name="FireArea" type="Area2D" parent="." groups=["furnace"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireArea" groups=["furnace"]]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_5cqhb")
+
+[node name="BellowSystem" parent="." instance=ExtResource("7_uxcy8")]
+position = Vector2(48, 18)

@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=4 uid="uid://c02ej5nq6giwy"]
+
+[ext_resource type="Texture2D" uid="uid://cbsqa20efrncg" path="res://sprites/Tilesets/WallSignSpriteSheet.png" id="1_b6f5g"]
+[ext_resource type="Texture2D" uid="uid://gwpvfemugjho" path="res://sprites/Tilesets/N_WallSignSpriteSheet.png" id="2_pw8pg"]
+[ext_resource type="Texture2D" uid="uid://6yase13lbk1g" path="res://icon.svg" id="4_pw8pg"]
+[ext_resource type="FontFile" uid="uid://cte8qogeshirg" path="res://sprites/UI/celtic-bit.ttf" id="4_qxfyf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2c2dh"]
+diffuse_texture = ExtResource("1_b6f5g")
+normal_texture = ExtResource("2_pw8pg")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g1c11"]
+texture = SubResource("CanvasTexture_2c2dh")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_c4pau"]
+sources/1 = SubResource("TileSetAtlasSource_g1c11")
+
+[node name="ShopSign" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAQADAAAAAAABAAAAAQAAAAAAAAACAAAAAQABAAAAAAADAAAAAQABAAAAAAAEAAAAAQABAAAAAAAFAAAAAQABAAAAAAAGAAAAAQABAAAAAAAHAAAAAQACAAAAAAA=")
+tile_set = SubResource("TileSet_c4pau")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 14.0
+offset_bottom = 14.0
+focus_neighbor_right = NodePath("../LineEdit")
+focus_previous = NodePath("../LineEdit")
+texture = ExtResource("4_pw8pg")
+expand_mode = 3
+
+[node name="LineEdit" type="LineEdit" parent="."]
+modulate = Color(0.4, 0.223529, 0.192157, 1)
+offset_left = 17.0
+offset_top = -1.0
+offset_right = 127.0
+offset_bottom = 21.0
+focus_neighbor_left = NodePath("../TextureRect")
+focus_previous = NodePath("../TextureRect")
+theme_override_fonts/font = ExtResource("4_qxfyf")
+theme_override_font_sizes/font_size = 8
+text = "Ye Olde Forge"
+alignment = 1
+max_length = 13
+flat = true

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://byxoitpfrrsrw"
+path="res://.godot/imported/Games, Video, Medieval, GUI, Building Finished 02 SND63081.wav-054efd55914f2d616900a7b260c9a01f.sample"
+
+[deps]
+
+source_file="res://audio/sfx/Games, Video, Medieval, GUI, Building Finished 02 SND63081.wav"
+dest_files=["res://.godot/imported/Games, Video, Medieval, GUI, Building Finished 02 SND63081.wav-054efd55914f2d616900a7b260c9a01f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

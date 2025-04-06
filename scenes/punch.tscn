@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqvwyip6xaq61"]
+
+[ext_resource type="Script" uid="uid://dg84ecqr1pjxy" path="res://addons/swing_object_2d.gd" id="1_4y6mg"]
+[ext_resource type="Texture2D" uid="uid://dvy7c2jy5dg2s" path="res://sprites/Punch.png" id="2_4y6mg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0noi"]
+size = Vector2(1, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hsip6"]
+size = Vector2(3, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c08w4"]
+size = Vector2(5, 1)
+
+[node name="Punch" type="RigidBody2D"]
+input_pickable = true
+mass = 2.0
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, 2)
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("1_4y6mg")
+metadata/_custom_type_script = "uid://dg84ecqr1pjxy"
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_q0noi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hsip6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_c08w4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, -1)
+texture = ExtResource("2_4y6mg")
+region_rect = Rect2(0, 0, 1, 1)

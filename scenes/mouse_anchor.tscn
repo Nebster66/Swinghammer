@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://4bu7njwiv38g"]
+
+[ext_resource type="Script" uid="uid://og50rqumhr8v" path="res://scripts/mouse_anchor.gd" id="1_ep51w"]
+
+[node name="MouseAnchor" type="StaticBody2D"]
+script = ExtResource("1_ep51w")

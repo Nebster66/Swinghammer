@@ -1,0 +1,174 @@
+[gd_scene load_steps=22 format=3 uid="uid://dh7i1sculfnd1"]
+
+[ext_resource type="Script" uid="uid://b3hpeqbt8oyup" path="res://scripts/bellows.gd" id="1_ips4d"]
+[ext_resource type="Texture2D" uid="uid://bvhq4uejl8y3q" path="res://sprites/Rope.png" id="2_bixf2"]
+[ext_resource type="Script" uid="uid://dg84ecqr1pjxy" path="res://addons/swing_object_2d.gd" id="2_ttghh"]
+[ext_resource type="Texture2D" uid="uid://bhdvjlipmhnmf" path="res://sprites/BellowsHandleaseprite.png" id="4_ng7rb"]
+[ext_resource type="Texture2D" uid="uid://5puqx71gut64" path="res://sprites/AlteredBellows-Sheet.png" id="5_5hqjo"]
+[ext_resource type="Texture2D" uid="uid://ddau6tnu13f6w" path="res://sprites/BellowsSupportSupport.png" id="6_kdllf"]
+[ext_resource type="AudioStream" uid="uid://ewsr3t2wlv24" path="res://audio/sfx/BellowFill1.wav" id="7_rsnkf"]
+[ext_resource type="AudioStream" uid="uid://bfuowjsl0fihq" path="res://audio/sfx/BellowPump1.wav" id="8_ips4d"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_x26ev"]
+a = Vector2(1, -40)
+b = Vector2(-2, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdllf"]
+size = Vector2(64, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7eerm"]
+size = Vector2(2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x26ev"]
+atlas = ExtResource("5_5hqjo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7eerm"]
+atlas = ExtResource("5_5hqjo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuifr"]
+atlas = ExtResource("5_5hqjo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbtcc"]
+atlas = ExtResource("5_5hqjo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7frj2"]
+atlas = ExtResource("5_5hqjo")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axyiw"]
+atlas = ExtResource("5_5hqjo")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5hqjo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x26ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7eerm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuifr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbtcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7frj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axyiw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya3xn"]
+size = Vector2(4, 64)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ips4d"]
+streams_count = 1
+stream_0/stream = ExtResource("7_rsnkf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kti25"]
+streams_count = 1
+stream_0/stream = ExtResource("8_ips4d")
+
+[node name="BellowSystem" type="Node2D"]
+script = ExtResource("1_ips4d")
+pump_boost_db = 20.0
+pump_fade_rate = 20.0
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(18, -45)
+node_a = NodePath("../Bar")
+node_b = NodePath("../Rope")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(15, 10)
+node_a = NodePath("../Rope")
+node_b = NodePath("../BellowPin")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2(0, -45)
+node_a = NodePath("../Bar")
+node_b = NodePath("../Support")
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="."]
+position = Vector2(15, 5)
+node_a = NodePath("../Support")
+node_b = NodePath("../BellowPin")
+length = 5.0
+initial_offset = 5.0
+
+[node name="Rope" type="RigidBody2D" parent="."]
+position = Vector2(17, -9)
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rope"]
+shape = SubResource("SegmentShape2D_x26ev")
+
+[node name="WoodBar" type="Sprite2D" parent="Rope"]
+position = Vector2(-0.598664, -8.08814)
+rotation = 1.62236
+texture = ExtResource("2_bixf2")
+
+[node name="Bar" type="RigidBody2D" parent="."]
+position = Vector2(-13, -49)
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("2_ttghh")
+metadata/_custom_type_script = "uid://dg84ecqr1pjxy"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bar"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_kdllf")
+
+[node name="WoodBar" type="Sprite2D" parent="Bar"]
+position = Vector2(0, 4)
+texture = ExtResource("4_ng7rb")
+
+[node name="BellowPin" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BellowPin"]
+position = Vector2(15, 10)
+shape = SubResource("RectangleShape2D_7eerm")
+
+[node name="Bellows" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5hqjo")
+
+[node name="Support" type="StaticBody2D" parent="."]
+position = Vector2(-4, -4)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Support"]
+position = Vector2(4, -14)
+shape = SubResource("RectangleShape2D_ya3xn")
+
+[node name="WoodBar" type="Sprite2D" parent="Support"]
+position = Vector2(4, -14)
+texture = ExtResource("6_kdllf")
+
+[node name="BellowFillPlaylist" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ips4d")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="BellowPumpPlaylist" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kti25")
+bus = &"SFX"

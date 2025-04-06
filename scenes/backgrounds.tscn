@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2sojmd64xekr"]
+
+[ext_resource type="Texture2D" uid="uid://dp0m2y85j6o8o" path="res://sprites/Summer2.png" id="1_n2kl4"]
+[ext_resource type="Texture2D" uid="uid://csfmsxc78cufd" path="res://sprites/Summer4.png" id="3_x13is"]
+[ext_resource type="Texture2D" uid="uid://i6mkfpddynjy" path="res://sprites/Summer5.png" id="4_u5gg5"]
+[ext_resource type="Texture2D" uid="uid://bm5ieimrpvm3x" path="res://sprites/Summer7.png" id="5_hpmcs"]
+[ext_resource type="Script" uid="uid://bb5ek3o6dk3nx" path="res://scripts/backgrounds.gd" id="7_krndj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5j6ke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_n2kl4")
+}],
+"loop": true,
+"name": &"Summer2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_x13is")
+}],
+"loop": true,
+"name": &"Summer4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_u5gg5")
+}],
+"loop": true,
+"name": &"Summer5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_hpmcs")
+}],
+"loop": true,
+"name": &"Summer7",
+"speed": 5.0
+}]
+
+[node name="Backgrounds" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_5j6ke")
+animation = &"Summer7"
+script = ExtResource("7_krndj")

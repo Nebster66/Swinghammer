@@ -1,0 +1,69 @@
+[gd_scene load_steps=15 format=3 uid="uid://mkdjq3hd1lae"]
+
+[ext_resource type="Texture2D" uid="uid://d06ucrtpjj3yj" path="res://sprites/WallTorch16x16.png" id="1_4tao6"]
+[ext_resource type="PackedScene" uid="uid://ckj2w2r14xiur" path="res://scenes/FX/point_smoke.tscn" id="2_6vhbh"]
+[ext_resource type="PackedScene" uid="uid://cpjyw4m88sh8e" path="res://scenes/FX/flame.tscn" id="2_alyco"]
+[ext_resource type="Texture2D" uid="uid://c8m11pbq36mu3" path="res://shaders/point_light_grad.tres" id="4_05u7e"]
+[ext_resource type="Script" uid="uid://6i82qnbeinjo" path="res://scripts/point_light_flicker.gd" id="4_6vhbh"]
+
+[sub_resource type="Gradient" id="Gradient_fvrak"]
+colors = PackedColorArray(0.769261, 0.527691, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_thivc"]
+gradient = SubResource("Gradient_fvrak")
+
+[sub_resource type="Gradient" id="Gradient_rp4rw"]
+offsets = PackedFloat32Array(0, 0.518182)
+colors = PackedColorArray(1, 0.414585, 0.264495, 1, 0.971168, 0.970373, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cyk1v"]
+gradient = SubResource("Gradient_rp4rw")
+
+[sub_resource type="Curve" id="Curve_5h1uf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_04vr3"]
+curve = SubResource("Curve_5h1uf")
+
+[sub_resource type="Curve" id="Curve_2kroe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mkjab"]
+curve = SubResource("Curve_2kroe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u2flj"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(2, 2, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, -10, 0)
+scale_curve = SubResource("CurveTexture_mkjab")
+color = Color(1, 0.888483, 0.449032, 1)
+color_ramp = SubResource("GradientTexture1D_cyk1v")
+color_initial_ramp = SubResource("GradientTexture1D_thivc")
+emission_curve = SubResource("CurveTexture_04vr3")
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+
+[node name="WallTorch" type="Sprite2D"]
+texture = ExtResource("1_4tao6")
+
+[node name="PointSmoke" parent="." instance=ExtResource("2_6vhbh")]
+position = Vector2(0, -7)
+
+[node name="Flame" parent="." instance=ExtResource("2_alyco")]
+position = Vector2(0, -7)
+amount = 75
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_u2flj")
+
+[node name="PointLightFlicker" type="PointLight2D" parent="."]
+z_index = 1
+position = Vector2(0, -7)
+color = Color(0.761045, 0.573057, 0, 1)
+range_z_max = 3
+texture = ExtResource("4_05u7e")
+texture_scale = 2.0
+script = ExtResource("4_6vhbh")

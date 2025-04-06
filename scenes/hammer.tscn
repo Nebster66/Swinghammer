@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dba3k8hl528o0"]
+
+[ext_resource type="Script" uid="uid://b2ts6c2ib32mu" path="res://scripts/hammer.gd" id="1_66ruw"]
+[ext_resource type="Texture2D" uid="uid://c8sb6ln3mo18d" path="res://sprites/Hammer16x16.png" id="1_b176v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcspr"]
+size = Vector2(2, 13)
+
+[node name="Hammer" type="RigidBody2D" groups=["bounceable"]]
+input_pickable = true
+center_of_mass_mode = 1
+center_of_mass = Vector2(2.5, -6.5)
+script = ExtResource("1_66ruw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_b176v")
+
+[node name="HeadCollider" type="CollisionPolygon2D" parent="." groups=["bounceable"]]
+polygon = PackedVector2Array(4, -8, 4, -5, -4, -5, -4, -7, -3, -7, -3, -8)
+
+[node name="HandleCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_pcspr")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d3ua8fefhkqrm"
+path="res://.godot/imported/Swooshes, Swish, Beach Umbrella Pole SND73276.wav-cd8626ff60cb1fba8121eaf913bc64ab.sample"
+
+[deps]
+
+source_file="res://audio/sfx/Swooshes, Swish, Beach Umbrella Pole SND73276.wav"
+dest_files=["res://.godot/imported/Swooshes, Swish, Beach Umbrella Pole SND73276.wav-cd8626ff60cb1fba8121eaf913bc64ab.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

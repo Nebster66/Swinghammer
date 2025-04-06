@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dj2x3praw7swl"
+path="res://.godot/imported/Fire, Torch, Medium, Movement 02 SND8751.wav-8ac16f93f50df16321605982fe37fefb.sample"
+
+[deps]
+
+source_file="res://audio/sfx/Fire, Torch, Medium, Movement 02 SND8751.wav"
+dest_files=["res://.godot/imported/Fire, Torch, Medium, Movement 02 SND8751.wav-8ac16f93f50df16321605982fe37fefb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

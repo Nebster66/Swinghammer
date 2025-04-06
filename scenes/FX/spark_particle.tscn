@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://b36brkot0lgsi"]
+
+[ext_resource type="Script" uid="uid://detdewkbqa1r2" path="res://scripts/particles.gd" id="1_josy2"]
+
+[sub_resource type="Gradient" id="Gradient_rbwt1"]
+offsets = PackedFloat32Array(0.645455, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.501407, 0.501406, 0.501406, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jcmk3"]
+gradient = SubResource("Gradient_rbwt1")
+
+[sub_resource type="Curve" id="Curve_oxt2t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_27iuq"]
+curve = SubResource("Curve_oxt2t")
+
+[sub_resource type="Curve" id="Curve_okun2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cd33x"]
+curve = SubResource("Curve_okun2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f8qln"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_min = 40.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 75, 0)
+scale_min = 0.5
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_cd33x")
+color = Color(0.979879, 0.627517, 0.305846, 1)
+color_ramp = SubResource("GradientTexture1D_jcmk3")
+emission_curve = SubResource("CurveTexture_27iuq")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.6
+collision_use_scale = true
+
+[node name="SparkParticle" type="GPUParticles2D"]
+amount = 32
+lifetime = 2.0
+randomness = 0.6
+trail_enabled = true
+trail_lifetime = 0.05
+process_material = SubResource("ParticleProcessMaterial_f8qln")
+script = ExtResource("1_josy2")

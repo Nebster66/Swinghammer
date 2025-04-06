@@ -1,0 +1,214 @@
+[gd_scene load_steps=4 format=3 uid="uid://chtesvodkalij"]
+
+[ext_resource type="Theme" uid="uid://bfmhlm5dgdsvs" path="res://sprites/UI/UI.tres" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://bp5qa5sc4xlkr" path="res://scripts/main_menu.gd" id="2_ekxnf"]
+[ext_resource type="FontFile" uid="uid://cmowptq4b1wr" path="res://sprites/UI/celtic-bitty.ttf" id="3_bqqt6"]
+
+[node name="MainMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+theme = ExtResource("1_l6cm7")
+script = ExtResource("2_ekxnf")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+text = "Swinghammer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(320, 130)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuButtons" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(320, 87)
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="StartButton" type="Button" parent="CenterContainer/MenuButtons"]
+layout_mode = 2
+theme = ExtResource("1_l6cm7")
+text = "Start"
+flat = true
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/MenuButtons"]
+layout_mode = 2
+theme = ExtResource("1_l6cm7")
+text = "Options
+"
+flat = true
+
+[node name="CreditsButton" type="Button" parent="CenterContainer/MenuButtons"]
+layout_mode = 2
+theme = ExtResource("1_l6cm7")
+text = "Credits
+"
+flat = true
+
+[node name="QuitButton" type="Button" parent="CenterContainer/MenuButtons"]
+layout_mode = 2
+theme = ExtResource("1_l6cm7")
+text = "Quit"
+flat = true
+
+[node name="OptionsMenu" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(320, 130)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/OptionsMenu"]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="CatagoryMenu" type="VBoxContainer" parent="CenterContainer/OptionsMenu/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="DisplayButton" type="Button" parent="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu"]
+layout_mode = 2
+text = "Display"
+
+[node name="SoundButton" type="Button" parent="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu"]
+layout_mode = 2
+text = "Sound
+"
+
+[node name="AccessButton" type="Button" parent="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu"]
+layout_mode = 2
+text = "Accessability"
+
+[node name="DisplayMenu" type="VBoxContainer" parent="CenterContainer/OptionsMenu/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="DisplayMode" type="CheckBox" parent="CenterContainer/OptionsMenu/HBoxContainer/DisplayMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/OptionsMenu/HBoxContainer/DisplayMenu/DisplayMode"]
+layout_mode = 2
+offset_left = 25.0
+offset_top = 15.0
+offset_right = 145.0
+offset_bottom = 17.0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+text = "Fullscreen"
+
+[node name="VolumeMenu" type="VBoxContainer" parent="CenterContainer/OptionsMenu/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[node name="MainVolumeLabel" type="Label" parent="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_bqqt6")
+text = "Master"
+vertical_alignment = 2
+
+[node name="MainVolumeSlider" type="HSlider" parent="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_bqqt6")
+text = "Music"
+vertical_alignment = 2
+
+[node name="MusicVolumeSlider" type="HSlider" parent="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer3" type="VBoxContainer" parent="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[node name="SFXVolumeLabel" type="Label" parent="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer3"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_bqqt6")
+text = "SFX"
+vertical_alignment = 2
+
+[node name="SFXVolumeSlider" type="HSlider" parent="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="BackButton" type="Button" parent="CenterContainer/OptionsMenu"]
+layout_mode = 2
+text = "Back"
+
+[node name="CreditsMenu" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="CenterContainer/CreditsMenu"]
+custom_minimum_size = Vector2(320, 62)
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_bqqt6")
+text = "Developed by Ben Bevan
+Made in Godot 4.4
+SFX from Soundly"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="CenterContainer/CreditsMenu"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="CenterContainer/MenuButtons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu/DisplayButton" to="." method="_on_display_button_pressed"]
+[connection signal="pressed" from="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu/SoundButton" to="." method="_on_sound_button_pressed"]
+[connection signal="toggled" from="CenterContainer/OptionsMenu/HBoxContainer/DisplayMenu/DisplayMode" to="." method="_on_display_mode_toggled"]
+[connection signal="value_changed" from="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer/MainVolumeSlider" to="." method="_on_main_volume_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer2/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer3/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="pressed" from="CenterContainer/OptionsMenu/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CenterContainer/CreditsMenu/BackButton" to="." method="_on_back_button_pressed"]

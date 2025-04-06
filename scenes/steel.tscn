@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7uwta6ndl4gu"]
+
+[ext_resource type="Script" uid="uid://b2ts6c2ib32mu" path="res://scripts/hammer.gd" id="1_5l8sb"]
+[ext_resource type="Texture2D" uid="uid://c5y4rm8nwb5u1" path="res://sprites/Steel32x32-Sheet.png" id="2_b80ep"]
+
+[node name="Steel" type="RigidBody2D"]
+z_index = -1
+input_pickable = true
+mass = 4.0
+script = ExtResource("1_5l8sb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 2)
+texture = ExtResource("2_b80ep")
+region_enabled = true
+region_rect = Rect2(1, 6, 26, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-13, -1, -13, 1, 13, 1, 13, -1)
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

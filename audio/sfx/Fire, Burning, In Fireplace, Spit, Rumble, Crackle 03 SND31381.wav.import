@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dowhbisqtk1q2"
+path="res://.godot/imported/Fire, Burning, In Fireplace, Spit, Rumble, Crackle 03 SND31381.wav-40109e9a8f831cb2019a9b2feb958ffc.sample"
+
+[deps]
+
+source_file="res://audio/sfx/Fire, Burning, In Fireplace, Spit, Rumble, Crackle 03 SND31381.wav"
+dest_files=["res://.godot/imported/Fire, Burning, In Fireplace, Spit, Rumble, Crackle 03 SND31381.wav-40109e9a8f831cb2019a9b2feb958ffc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

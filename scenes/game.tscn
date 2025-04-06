@@ -1,0 +1,343 @@
+[gd_scene load_steps=37 format=4 uid="uid://dwe482lrkiq6d"]
+
+[ext_resource type="PackedScene" uid="uid://c2sojmd64xekr" path="res://scenes/backgrounds.tscn" id="1_0tnpc"]
+[ext_resource type="Script" uid="uid://cndoxmecjneg6" path="res://scripts/game.gd" id="1_37s47"]
+[ext_resource type="Script" uid="uid://iy6oxgq8bq3g" path="res://scripts/camera_2d.gd" id="1_264po"]
+[ext_resource type="PackedScene" uid="uid://bq6qm4o33g2vc" path="res://scenes/grindstone.tscn" id="1_pt2ai"]
+[ext_resource type="PackedScene" uid="uid://cw5hxbyevw7wx" path="res://scenes/UI.tscn" id="1_trtic"]
+[ext_resource type="Script" uid="uid://bsc1mlio8enbu" path="res://scripts/canvas_modulate.gd" id="2_dinhu"]
+[ext_resource type="Script" uid="uid://b6g5ior1rbt3x" path="res://scripts/world_audio_manager.gd" id="3_rysoc"]
+[ext_resource type="PackedScene" uid="uid://5lob7krc5d7q" path="res://scenes/anvil.tscn" id="4_o70pb"]
+[ext_resource type="AudioStream" uid="uid://dwn4usgtk7mmr" path="res://audio/ambient/Ambience, Forest, Birds, Wind In Trees 01 SND0432.wav" id="4_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://c6whenmval02w" path="res://scenes/water_barrel.tscn" id="5_81pp8"]
+[ext_resource type="PackedScene" uid="uid://c4sd00yqu6ur8" path="res://scenes/wall_pin.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://4b64dirk2j2m" path="res://scenes/swing_hammer.tscn" id="8_dv0jt"]
+[ext_resource type="PackedScene" uid="uid://ckj2w2r14xiur" path="res://scenes/FX/point_smoke.tscn" id="8_e1j6l"]
+[ext_resource type="TileSet" uid="uid://d02fmsbyyx0vp" path="res://sprites/Tilesets/WorkshopWallsTileset.tres" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://brbhxoo1l6rv6" path="res://scenes/small_furnace.tscn" id="9_ir15t"]
+[ext_resource type="PackedScene" uid="uid://1ditmnxofc8i" path="res://scenes/steel_bar.tscn" id="10_epqd0"]
+[ext_resource type="PackedScene" uid="uid://mkdjq3hd1lae" path="res://scenes/wall_torch.tscn" id="10_vtaks"]
+[ext_resource type="PackedScene" uid="uid://biliu5ug840bo" path="res://scenes/mouse.tscn" id="11_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://c02ej5nq6giwy" path="res://scenes/shop_sign.tscn" id="13_kvuet"]
+[ext_resource type="PackedScene" uid="uid://5l6m3lfa2x14" path="res://scenes/storage.tscn" id="15_ca42v"]
+[ext_resource type="PackedScene" uid="uid://dqvwyip6xaq61" path="res://scenes/punch.tscn" id="17_1kice"]
+[ext_resource type="PackedScene" uid="uid://chtesvodkalij" path="res://scenes/main_menu.tscn" id="18_ssvqc"]
+[ext_resource type="Script" uid="uid://b7kigekk4x4gv" path="res://scenes/menu_button.gd" id="20_5newe"]
+[ext_resource type="Texture2D" uid="uid://wurd7minik0y" path="res://sprites/UI/UI_Medieval.png" id="21_bt5mj"]
+
+[sub_resource type="Curve" id="Curve_w57v7"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ipm6w"]
+curve = SubResource("Curve_w57v7")
+
+[sub_resource type="Curve" id="Curve_8vec1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2y5h6"]
+curve = SubResource("Curve_8vec1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e1j6l"]
+particle_flag_disable_z = true
+angle_min = -45.0
+angle_max = 45.0
+direction = Vector3(0, -1, 0)
+initial_velocity_max = 10.0
+gravity = Vector3(0, -49, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_2y5h6")
+color = Color(0.775064, 0.775063, 0.775064, 1)
+alpha_curve = SubResource("CurveTexture_ipm6w")
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+collision_use_scale = true
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ddes0"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lxd2q"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cxjwm"]
+distance = 6.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0tnpc"]
+polygon = PackedVector2Array(116, -119, 116, -146, 120, -146, 120, -123, 197, -91, 195, -87)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gee14"]
+polygon = PackedVector2Array(108, -119, 108, -146, 104, -146, 104, -123, 24, -93, 24, -88)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p57ef"]
+polygon = PackedVector2Array(-32, 29.6, -32, 40, 32, 40, 32, 29.6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1j6l"]
+atlas = ExtResource("21_bt5mj")
+region = Rect2(226, 98, 12, 12)
+
+[node name="Game" type="Node2D" groups=["camera"]]
+script = ExtResource("1_37s47")
+
+[node name="Util" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Util"]
+process_mode = 3
+position = Vector2(0, -171)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+script = ExtResource("1_264po")
+
+[node name="Mouse" parent="Util" instance=ExtResource("11_kvpfn")]
+
+[node name="WorldAudioManager" type="Node" parent="Util"]
+process_mode = 3
+script = ExtResource("3_rysoc")
+
+[node name="BackgroundAudioPlayer" type="AudioStreamPlayer" parent="Util/WorldAudioManager"]
+stream = ExtResource("4_ssvqc")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
+
+[node name="GameMarker" type="Marker2D" parent="Util"]
+
+[node name="MainMenuMarker" type="Marker2D" parent="Util"]
+position = Vector2(0, -171)
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Background"]
+script = ExtResource("2_dinhu")
+
+[node name="Backgrounds" parent="Background" instance=ExtResource("1_0tnpc")]
+position = Vector2(0, -99)
+scale = Vector2(0.25, 0.25)
+
+[node name="PointSmoke" parent="Background" instance=ExtResource("8_e1j6l")]
+position = Vector2(150, -78)
+amount = 5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_e1j6l")
+
+[node name="Inside" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Inside"]
+color = Color(0.864675, 0.864675, 0.864675, 1)
+script = ExtResource("2_dinhu")
+
+[node name="TilemapLayers" type="Node2D" parent="Inside"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Inside/TilemapLayers"]
+tile_map_data = PackedByteArray("AAD+/wAAAAACAAAAAAAAAAAAAAACAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAD//wAAAAAEAAAAAAD9/wAAAAAAAAAAAAD9/wEAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAA=")
+tile_set = ExtResource("8_gee14")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="Inside/TilemapLayers"]
+tile_map_data = PackedByteArray("AAD//wAAAAAKAAAAAAD+/wAAAAAJAAAAAAABAAAAAAAJAAAAAAA=")
+tile_set = ExtResource("8_gee14")
+
+[node name="WorldBorder" type="StaticBody2D" parent="Inside"]
+
+[node name="Right" type="CollisionShape2D" parent="Inside/WorldBorder"]
+position = Vector2(160, 0)
+shape = SubResource("WorldBoundaryShape2D_ddes0")
+
+[node name="Left" type="CollisionShape2D" parent="Inside/WorldBorder"]
+position = Vector2(-160, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_lxd2q")
+
+[node name="Ground" type="CollisionShape2D" parent="Inside/WorldBorder"]
+position = Vector2(0, 71)
+shape = SubResource("WorldBoundaryShape2D_cxjwm")
+
+[node name="Lighting" type="Node2D" parent="Inside"]
+
+[node name="WallTorch" parent="Inside/Lighting" instance=ExtResource("10_vtaks")]
+position = Vector2(-125, 24)
+
+[node name="WallTorch2" parent="Inside/Lighting" instance=ExtResource("10_vtaks")]
+position = Vector2(-3, 24)
+
+[node name="WallTorch3" parent="Inside/Lighting" instance=ExtResource("10_vtaks")]
+position = Vector2(67, 24)
+
+[node name="Grindstone" parent="Inside" instance=ExtResource("1_pt2ai")]
+position = Vector2(-64, 57)
+
+[node name="Furnace2" parent="Inside" instance=ExtResource("9_ir15t")]
+z_index = 1
+position = Vector2(92, 35)
+
+[node name="Anvil" parent="Inside" instance=ExtResource("4_o70pb")]
+position = Vector2(32, 49)
+
+[node name="WaterBarrel" parent="Inside" instance=ExtResource("5_81pp8")]
+position = Vector2(-144, 51)
+
+[node name="SwingHammer" parent="Inside" instance=ExtResource("8_dv0jt")]
+position = Vector2(-64, 15)
+
+[node name="SteelBar" parent="Inside" instance=ExtResource("10_epqd0")]
+z_index = -1
+position = Vector2(-101, 47)
+rotation = 1.74533
+
+[node name="SteelBar2" parent="Inside" instance=ExtResource("10_epqd0")]
+z_index = -1
+position = Vector2(-97, 47)
+rotation = 1.74533
+tile_count = 9
+
+[node name="SteelBar4" parent="Inside" instance=ExtResource("10_epqd0")]
+z_index = -1
+position = Vector2(-93, 47)
+rotation = 1.74533
+tile_count = 10
+
+[node name="SteelBar5" parent="Inside" instance=ExtResource("10_epqd0")]
+z_index = -1
+position = Vector2(-89, 47)
+rotation = 1.74533
+tile_count = 9
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Inside"]
+offset_left = -180.0
+offset_top = -90.0
+offset_right = 180.0
+offset_bottom = 90.0
+
+[node name="ParticlesViewport" type="SubViewport" parent="Inside/SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(360, 180)
+render_target_update_mode = 4
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Inside/SubViewportContainer/ParticlesViewport"]
+position = Vector2(176, 172)
+occluder = SubResource("OccluderPolygon2D_0tnpc")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Inside/SubViewportContainer/ParticlesViewport"]
+position = Vector2(176, 172)
+occluder = SubResource("OccluderPolygon2D_gee14")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="Inside/SubViewportContainer/ParticlesViewport"]
+position = Vector2(180, 80)
+scale = Vector2(5, 2.5)
+occluder = SubResource("OccluderPolygon2D_p57ef")
+
+[node name="HammerPins" type="Node2D" parent="Inside"]
+position = Vector2(-2, -14)
+
+[node name="WallPin" parent="Inside/HammerPins" instance=ExtResource("7_u5sy4")]
+position = Vector2(-65, 25)
+
+[node name="WallPin2" parent="Inside/HammerPins" instance=ExtResource("7_u5sy4")]
+position = Vector2(-59, 25)
+
+[node name="HammerPins2" type="Node2D" parent="Inside"]
+position = Vector2(-2, 7)
+
+[node name="WallPin" parent="Inside/HammerPins2" instance=ExtResource("7_u5sy4")]
+position = Vector2(-64, 25)
+
+[node name="WallPin2" parent="Inside/HammerPins2" instance=ExtResource("7_u5sy4")]
+position = Vector2(-60, 25)
+
+[node name="Storage" parent="Inside" instance=ExtResource("15_ca42v")]
+position = Vector2(-96, 58)
+
+[node name="Punch" parent="Inside" instance=ExtResource("17_1kice")]
+position = Vector2(-64, 32)
+
+[node name="Roof" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Roof"]
+script = ExtResource("2_dinhu")
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="Roof"]
+z_index = 2
+tile_map_data = PackedByteArray("AAD9////AAAFAAAAAAD/////AAAFAAAAAAAAAP//AAAFAAAAAAABAP//AAAGAAAAAAACAP//AAAFAAAAAAD+////AAAFAAAAAAA=")
+tile_set = ExtResource("8_gee14")
+
+[node name="ShopSign" parent="Roof" instance=ExtResource("13_kvuet")]
+visible = false
+z_index = 3
+position = Vector2(-153, -6)
+
+[node name="TEST" type="CanvasLayer" parent="."]
+visible = false
+offset = Vector2(0, -19.83)
+scale = Vector2(1.645, 0.55)
+transform = Transform2D(1.645, 0, 0, 0.55, 0, -19.83)
+follow_viewport_enabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="TEST"]
+tile_map_data = PackedByteArray("AAD9////AAAMAAAAAAD+////AAAMAAAAAAD/////AAAMAAAAAAAAAP//AAAMAAAAAAABAP//AAAMAAAAAAACAP//AAAMAAAAAAD8////AAAMAAAAAAADAP//AAAMAAAAAAA=")
+tile_set = ExtResource("8_gee14")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="TEST"]
+tile_map_data = PackedByteArray("AAD9////AAAHAAAAAAACAP//AAAHAAAAAAD+////AAAHAAAAAAD/////AAAHAAAAAAAAAP//AAAHAAAAAAABAP//AAAHAAAAAAA=")
+tile_set = ExtResource("8_gee14")
+
+[node name="CanvasModulate2" type="CanvasModulate" parent="TEST"]
+script = ExtResource("2_dinhu")
+
+[node name="UI" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="MainMenu" parent="UI" instance=ExtResource("18_ssvqc")]
+offset_left = -159.0
+offset_top = -267.0
+offset_right = 161.0
+offset_bottom = -87.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Title2" type="Label" parent="UI/MainMenu"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 37.0
+offset_top = 244.0
+offset_right = -45.0
+offset_bottom = 268.0
+grow_horizontal = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 8
+text = "Swinghammer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="UI/MainMenu"]
+process_mode = 3
+layout_mode = 0
+offset_left = 2.0
+offset_top = 176.0
+offset_right = 22.0
+offset_bottom = 204.0
+icon = SubResource("AtlasTexture_e1j6l")
+script = ExtResource("20_5newe")
+
+[node name="UI" parent="UI" instance=ExtResource("1_trtic")]
+visible = false
+z_index = 4096
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -750.0
+offset_top = -459.0
+offset_right = -750.0
+offset_bottom = -459.0
+
+[connection signal="start_game" from="UI/MainMenu" to="Util/Camera2D" method="_on_main_menu_start_game"]
+[connection signal="menu_return" from="UI/MainMenu/MenuButton" to="Util/Camera2D" method="_on_menu_button_menu_return"]
+[connection signal="pressed" from="UI/MainMenu/MenuButton" to="UI/MainMenu/MenuButton" method="_on_pressed"]

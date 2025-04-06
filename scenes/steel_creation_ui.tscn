@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bvpovy7l0vw6d"]
+
+[node name="SteelCreationUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainGrid" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 38.0
+offset_bottom = 44.0
+
+[node name="LengthGrid" type="HBoxContainer" parent="MainGrid"]
+layout_mode = 2
+
+[node name="EditLength" type="LineEdit" parent="MainGrid/LengthGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "6"
+alignment = 2
+
+[node name="CreateButton" type="Button" parent="MainGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Spawn"
