@@ -6,6 +6,19 @@ extends SwingObject2D
 
 var touching = true
 
+func _ready():
+		# Add directly to the SubViewport
+		var temp_particle: GPUParticles2D = spark.duplicate()
+		var particles_viewport = get_tree().get_root().get_node("Game/Inside/SubViewportContainer/ParticlesViewport")
+		particles_viewport.add_child(temp_particle)
+
+		temp_particle.restart()
+		temp_particle.emitting = true
+
+		temp_particle.finished.connect(func():
+			temp_particle.queue_free()
+		)
+
 func _on_body_entered(body: Node) -> void:
 	if held and body.is_in_group("steel"):
 		var particles_viewport = get_tree().get_root().get_node("Game/Inside/SubViewportContainer/ParticlesViewport")

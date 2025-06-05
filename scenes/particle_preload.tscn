@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo65u3polrgnm"]
+
+[ext_resource type="Script" uid="uid://cem3yl7ogv30s" path="res://scripts/preload.gd" id="1_yghsb"]
+
+[node name="ParticlePreload" type="Node2D"]
+script = ExtResource("1_yghsb")

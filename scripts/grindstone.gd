@@ -6,9 +6,13 @@ extends Area2D
 var on = false
 
 func _ready() -> void:
-	animation.pause()
+	sparks.emitting = true
+	smoke.emitting = true
+		# Let them run for at least 0.2s
+	await get_tree().create_timer(0.2).timeout
 	sparks.emitting = false
 	smoke.emitting = false
+	animation.pause()
 	
 	input_pickable = true
 	#test input signal connection

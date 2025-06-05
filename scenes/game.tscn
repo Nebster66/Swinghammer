@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://dwe482lrkiq6d"]
+[gd_scene load_steps=39 format=4 uid="uid://dwe482lrkiq6d"]
 
 [ext_resource type="PackedScene" uid="uid://c2sojmd64xekr" path="res://scenes/backgrounds.tscn" id="1_0tnpc"]
 [ext_resource type="Script" uid="uid://cndoxmecjneg6" path="res://scripts/game.gd" id="1_37s47"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://5lob7krc5d7q" path="res://scenes/anvil.tscn" id="4_o70pb"]
 [ext_resource type="AudioStream" uid="uid://dwn4usgtk7mmr" path="res://audio/ambient/Ambience, Forest, Birds, Wind In Trees 01 SND0432.wav" id="4_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://c6whenmval02w" path="res://scenes/water_barrel.tscn" id="5_81pp8"]
+[ext_resource type="PackedScene" uid="uid://bo65u3polrgnm" path="res://scenes/particle_preload.tscn" id="6_pl11u"]
 [ext_resource type="PackedScene" uid="uid://c4sd00yqu6ur8" path="res://scenes/wall_pin.tscn" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://4b64dirk2j2m" path="res://scenes/swing_hammer.tscn" id="8_dv0jt"]
 [ext_resource type="PackedScene" uid="uid://ckj2w2r14xiur" path="res://scenes/FX/point_smoke.tscn" id="8_e1j6l"]
@@ -22,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://5l6m3lfa2x14" path="res://scenes/storage.tscn" id="15_ca42v"]
 [ext_resource type="PackedScene" uid="uid://dqvwyip6xaq61" path="res://scenes/punch.tscn" id="17_1kice"]
 [ext_resource type="PackedScene" uid="uid://chtesvodkalij" path="res://scenes/main_menu.tscn" id="18_ssvqc"]
-[ext_resource type="Script" uid="uid://b7kigekk4x4gv" path="res://scenes/menu_button.gd" id="20_5newe"]
+[ext_resource type="Script" uid="uid://b7kigekk4x4gv" path="res://scripts/menu_button.gd" id="20_5newe"]
 [ext_resource type="Texture2D" uid="uid://wurd7minik0y" path="res://sprites/UI/UI_Medieval.png" id="21_bt5mj"]
 
 [sub_resource type="Curve" id="Curve_w57v7"]
@@ -71,6 +72,9 @@ polygon = PackedVector2Array(108, -119, 108, -146, 104, -146, 104, -123, 24, -93
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p57ef"]
 polygon = PackedVector2Array(-32, 29.6, -32, 40, 32, 40, 32, 29.6)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e1j6l"]
+polygon = PackedVector2Array(5.2, 23.6, 5.2, 24, 3.2, 24, 3.2, 24.4, 6, 26.8, 6, 28.4, 5, 29.6, 8.6, 29.6, 7.6, 28.4, 7.6, 27.6, 8.4, 25.2, 9.6, 24.4, 9.6, 23.6)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_e1j6l"]
 atlas = ExtResource("21_bt5mj")
 region = Rect2(226, 98, 12, 12)
@@ -96,13 +100,19 @@ script = ExtResource("3_rysoc")
 [node name="BackgroundAudioPlayer" type="AudioStreamPlayer" parent="Util/WorldAudioManager"]
 stream = ExtResource("4_ssvqc")
 volume_db = -20.0
-autoplay = true
 bus = &"Music"
 
 [node name="GameMarker" type="Marker2D" parent="Util"]
 
 [node name="MainMenuMarker" type="Marker2D" parent="Util"]
 position = Vector2(0, -171)
+
+[node name="PreloadArea" type="CanvasLayer" parent="."]
+layer = -1
+visible = false
+
+[node name="ParticlePreload" parent="PreloadArea" instance=ExtResource("6_pl11u")]
+position = Vector2(-104, -70)
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -124,6 +134,14 @@ process_material = SubResource("ParticleProcessMaterial_e1j6l")
 [node name="Inside" type="CanvasLayer" parent="."]
 layer = 0
 follow_viewport_enabled = true
+
+[node name="Walls" type="CanvasLayer" parent="Inside"]
+
+[node name="BackParticles" type="CanvasLayer" parent="Inside"]
+
+[node name="Objects" type="CanvasLayer" parent="Inside"]
+
+[node name="FrontParticles" type="CanvasLayer" parent="Inside"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Inside"]
 color = Color(0.864675, 0.864675, 0.864675, 1)
@@ -229,6 +247,11 @@ occluder = SubResource("OccluderPolygon2D_gee14")
 position = Vector2(180, 80)
 scale = Vector2(5, 2.5)
 occluder = SubResource("OccluderPolygon2D_p57ef")
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="Inside/SubViewportContainer/ParticlesViewport"]
+position = Vector2(180, 80)
+scale = Vector2(5, 2.5)
+occluder = SubResource("OccluderPolygon2D_e1j6l")
 
 [node name="HammerPins" type="Node2D" parent="Inside"]
 position = Vector2(-2, -14)
@@ -339,5 +362,7 @@ offset_right = -750.0
 offset_bottom = -459.0
 
 [connection signal="start_game" from="UI/MainMenu" to="Util/Camera2D" method="_on_main_menu_start_game"]
+[connection signal="start_game" from="UI/MainMenu" to="Util/WorldAudioManager" method="_on_main_menu_start_game"]
+[connection signal="start_game" from="UI/MainMenu" to="Inside/Furnace2" method="_on_main_menu_start_game"]
 [connection signal="menu_return" from="UI/MainMenu/MenuButton" to="Util/Camera2D" method="_on_menu_button_menu_return"]
 [connection signal="pressed" from="UI/MainMenu/MenuButton" to="UI/MainMenu/MenuButton" method="_on_pressed"]

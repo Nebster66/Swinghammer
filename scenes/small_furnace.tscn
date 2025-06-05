@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://brbhxoo1l6rv6"]
+[gd_scene load_steps=20 format=3 uid="uid://brbhxoo1l6rv6"]
 
 [ext_resource type="Script" uid="uid://saf20cgkm6oh" path="res://scripts/furnace.gd" id="1_548mx"]
 [ext_resource type="PackedScene" uid="uid://dprutpg3k0vgy" path="res://scenes/FX/furnace_smoke.tscn" id="2_f6emi"]
@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dh7i1sculfnd1" path="res://scenes/Bellows.tscn" id="7_yyxjv"]
 [ext_resource type="AudioStream" uid="uid://msfro63d4ror" path="res://audio/sfx/Fire, Burning, Stove, Inset Fireplace, House Chimney, From Side, Constant, Wide Opening, Nice Deep Roar With Cracks SND36889.wav" id="8_f6emi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cqhb"]
-size = Vector2(28, 2)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6emi"]
+size = Vector2(28, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5cqhb"]
 atlas = ExtResource("4_gtcqd")
@@ -72,6 +72,9 @@ gradient = SubResource("Gradient_5cqhb")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cqhb"]
+size = Vector2(28, 2)
+
 [node name="Furnace" type="StaticBody2D" groups=["furnace"]]
 input_pickable = true
 script = ExtResource("1_548mx")
@@ -79,8 +82,8 @@ min_volume_db = -20.0
 volume_fade_speed = 10.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." groups=["furnace"]]
-position = Vector2(16, 9)
-shape = SubResource("RectangleShape2D_5cqhb")
+position = Vector2(16, 9.5)
+shape = SubResource("RectangleShape2D_f6emi")
 
 [node name="Charcoals2" type="AnimatedSprite2D" parent="CollisionShape2D2"]
 z_index = -1
@@ -109,7 +112,7 @@ script = ExtResource("6_2koyx")
 position = Vector2(16, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireArea" groups=["furnace"]]
-position = Vector2(0, -2)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_5cqhb")
 
 [node name="BellowSystem" parent="." instance=ExtResource("7_yyxjv")]
@@ -122,16 +125,16 @@ texture = ExtResource("7_548mx")
 [node name="FurnaceSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(16, 8)
 stream = ExtResource("8_f6emi")
-autoplay = true
 bus = &"SFX"
 
-[node name="Flame" parent="." instance=ExtResource("3_6ncjf")]
-position = Vector2(16, 8)
-scale = Vector2(0.8, 1)
-amount = 150
-
 [node name="FurnaceSmoke" parent="." instance=ExtResource("2_f6emi")]
-position = Vector2(16, 8)
+position = Vector2(16, 7)
 scale = Vector2(0.8, 1)
 amount = 750
 lifetime = 12.0
+
+[node name="Flame" parent="." instance=ExtResource("3_6ncjf")]
+position = Vector2(16, 9)
+scale = Vector2(0.8, 1)
+emitting = false
+amount = 150

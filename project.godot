@@ -11,11 +11,17 @@ config_version=5
 [application]
 
 config/name="Swinghammer"
+config/version="0.1.2"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/use_filter=false
 boot_splash/image="uid://unleetilas4g"
 config/icon="uid://dr1pr6wmk8gg7"
+
+[autoload]
+
+ParticlesCache="res://particles_cache.gd"
+BackgroundLoader="res://background_loader.gd"
 
 [display]
 
@@ -43,3 +49,5 @@ camera=""
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

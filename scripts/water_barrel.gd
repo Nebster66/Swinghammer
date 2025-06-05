@@ -5,9 +5,14 @@ extends StaticBody2D
 @onready var boiling_audio: AudioStreamPlayer2D = $BoilingAudio
 
 func _ready() -> void:
+	bubbles.emitting = true
+	steam.emitting = true
+	# Let them run for at least 0.2s
+	await get_tree().create_timer(0.2).timeout
 	bubbles.emitting = false
 	steam.emitting = false
 	boiling_audio.stop()  # Ensure audio is stopped initially
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("steel"):

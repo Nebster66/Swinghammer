@@ -64,3 +64,7 @@ func update_furnace_volume(pump_boost: float) -> void:
 	
 	# Apply the interpolated volume
 	furnace_sound.volume_db = current_volume
+
+
+func _on_main_menu_start_game() -> void:
+	furnace_sound.play()

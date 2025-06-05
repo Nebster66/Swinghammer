@@ -1,0 +1,32 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://ct11svaf5d2m1"]
+
+[sub_resource type="Gradient" id="Gradient_cb6h1"]
+offsets = PackedFloat32Array(0.727273, 0.9, 1)
+colors = PackedColorArray(1, 0.776471, 0, 1, 0.855873, 0.481839, 9.62615e-07, 1, 0.854902, 0.482353, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jcmk3"]
+gradient = SubResource("Gradient_cb6h1")
+
+[sub_resource type="Curve" id="Curve_oxt2t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_27iuq"]
+curve = SubResource("Curve_oxt2t")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_min = 30.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 75, 0)
+color = Color(0.855873, 0.481839, 9.62615e-07, 1)
+color_ramp = SubResource("GradientTexture1D_jcmk3")
+emission_curve = SubResource("CurveTexture_27iuq")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.6
+collision_use_scale = true

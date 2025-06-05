@@ -4,6 +4,7 @@ extends GPUParticles2D
 var is_dynamic_spawn := false
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	if is_dynamic_spawn:
 		return  # Skip reparenting if dynamically spawned
 

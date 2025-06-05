@@ -1,41 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dprutpg3k0vgy"]
+[gd_scene load_steps=3 format=3 uid="uid://dprutpg3k0vgy"]
 
 [ext_resource type="Script" uid="uid://detdewkbqa1r2" path="res://scripts/particles.gd" id="1_4bj5g"]
-
-[sub_resource type="Curve" id="Curve_acmqr"]
-_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0.3), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_rx0m8"]
-curve = SubResource("Curve_acmqr")
-
-[sub_resource type="Curve" id="Curve_vb5ru"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_acmqr"]
-curve = SubResource("Curve_vb5ru")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vb5ru"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(16, 1, 0)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-angle_min = -45.0
-angle_max = 45.0
-direction = Vector3(0, -1, 0)
-initial_velocity_max = 10.0
-gravity = Vector3(0, -49, 0)
-scale_max = 4.0
-scale_curve = SubResource("CurveTexture_acmqr")
-color = Color(0.67069, 0.670689, 0.67069, 1)
-alpha_curve = SubResource("CurveTexture_rx0m8")
-turbulence_enabled = true
-turbulence_noise_strength = 0.5
-collision_mode = 1
-collision_friction = 0.0
-collision_bounce = 0.15
-collision_use_scale = true
+[ext_resource type="Material" uid="uid://byclrwnvxefxr" path="res://scenes/FX/Process_Materials/furnace_smoke.tres" id="1_saog4"]
 
 [node name="FurnaceSmoke" type="GPUParticles2D"]
 amount = 400
@@ -43,5 +9,5 @@ lifetime = 4.0
 randomness = 0.1
 collision_base_size = 0.5
 visibility_rect = Rect2(-100, -50, 200, 100)
-process_material = SubResource("ParticleProcessMaterial_vb5ru")
+process_material = ExtResource("1_saog4")
 script = ExtResource("1_4bj5g")
