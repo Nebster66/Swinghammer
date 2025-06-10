@@ -9,6 +9,8 @@ signal start_game
 @onready var credits_menu: VBoxContainer = $CenterContainer/CreditsMenu
 @onready var quit_button: Button = $CenterContainer/MenuButtons/QuitButton
 @onready var start_button: Button = $CenterContainer/MenuButtons/StartButton
+@onready var access_menu: VBoxContainer = $CenterContainer/OptionsMenu/HBoxContainer/AccessabilityMenu
+@onready var start_audio: AudioStreamPlayer2D = $CenterContainer/MenuButtons/StartButton/AudioStreamPlayer2D
 
 #volume sliders
 @onready var main_volume_slider: HSlider = $CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer/MainVolumeSlider
@@ -40,11 +42,13 @@ func _ready() -> void:
 
 func _on_start_button_pressed() -> void:
 	start_game.emit()
+	start_audio.play()
 	start_button.text = "Resume"
 	get_tree().paused = false
 	#quit_button.disabled = true
 
 func _on_quit_button_pressed() -> void:
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	get_tree().quit()
 
 func _on_options_button_pressed() -> void:
@@ -60,10 +64,12 @@ func _on_back_button_pressed() -> void:
 
 func _on_sound_button_pressed() -> void:
 	display_menu.visible = false
+	access_menu.visible = false
 	volume_menu.visible = true
 
 func _on_display_button_pressed() -> void:
 	volume_menu.visible = false
+	access_menu.visible = false
 	display_menu.visible = true
 
 func _on_credits_button_pressed() -> void:
@@ -85,3 +91,17 @@ func _on_music_volume_slider_value_changed(value: float) -> void:
 
 func _on_sfx_volume_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value))
+
+
+func _on_flip_hammer_toggled(toggled_on: bool) -> void:
+	pass # send a message to "SwingHammer" scene that flips sprite 2d, disables head1 collider, enables head2 collider, adjusts COM
+
+
+func _on_access_button_pressed() -> void:
+	volume_menu.visible = false
+	display_menu.visible = false
+	access_menu.visible = true
+
+
+func _on_flicker_toggled(toggled_on: bool) -> void:
+	get_tree().call_group("flicker_lights", "set_flicker_enabled", toggled_on)

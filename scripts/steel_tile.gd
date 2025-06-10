@@ -23,6 +23,13 @@ var in_furnace: bool = false
 var furnace: Node2D = null  
 var is_hardened: bool = false  
 
+# Sharpening properties
+var sharpness: float = 0.0
+var is_sharpened: bool = false
+var touching_grindstone: bool = false
+var grindstone: Node2D = null
+const SHARPEN_RATE: float = 20.0  # per second
+
 # Status handling
 var status_array = ["temp_0", "temp_1", "temp_2", "temp_3", "quenched", "sharp"]
 var current_status: int = 0
@@ -32,35 +39,40 @@ func _ready() -> void:
 	current_width = initial_width
 	current_height = initial_height
 
-	# Check if signals are already connected before connecting
+	# Connect signals
 	if not area_2d.is_connected("area_entered", Callable(self, "_on_area_2d_area_entered")):
 		area_2d.connect("area_entered", Callable(self, "_on_area_2d_area_entered"))
 	
 	if not area_2d.is_connected("area_exited", Callable(self, "_on_area_2d_area_exited")):
 		area_2d.connect("area_exited", Callable(self, "_on_area_2d_area_exited"))
 
-	# Set initial sprite and start processing
 	sprite.play(status_array[current_status])
 	set_process(true)
-
 
 func _physics_process(delta: float) -> void:
 	# Heat management
 	if in_furnace and furnace:
-		# If the steel is cooler than the furnace, start heating
 		if heat < furnace.temperature:
 			var furnace_heat_cap = (furnace.temperature / furnace.max_temperature) * max_heat
 			heat = min(heat + (furnace.temperature / furnace.max_temperature) * heating_rate * delta, furnace_heat_cap)
-		# If the steel is hotter than the furnace, cool it down
 		elif heat > furnace.temperature:
-			heat = max(heat - cooling_rate * delta, furnace.temperature)  # Prevent heat from dropping below furnace temperature
+			heat = max(heat - cooling_rate * delta, furnace.temperature)
 	else:
-		# Cool down normally when outside the furnace
 		heat = max(heat - cooling_rate * delta, 0)
 
-	# Update status only if not hardened
+	# Update temperature stage if not hardened
 	if not is_hardened:
 		_update_temperature_stage()
+
+	# Sharpening logic
+	if is_hardened and touching_grindstone and grindstone.on and not is_sharpened:
+		sharpness += SHARPEN_RATE * delta
+		sharpness = clamp(sharpness, 0, 100)
+
+		if sharpness >= 90:
+			is_sharpened = true
+			current_status = 5  # "sharp"
+			sprite.play(status_array[current_status])
 
 func _update_temperature_stage() -> void:
 	# Determine the new temperature stage
@@ -71,13 +83,10 @@ func _update_temperature_stage() -> void:
 		current_status = new_status
 		sprite.play(status_array[current_status])
 
-
 func deform() -> void:
-	# Deform based on the current status multipliers
 	current_width = clamp(current_width * w_mult_arr[current_status], initial_width, max_width)
 	current_height = clamp(current_height * h_mult_arr[current_status], min_height, initial_height)
 
-	# Apply deformation
 	$SteelTileSprite.scale = Vector2(current_width / initial_width, current_height / initial_height)
 	$CollisionShape2D.shape.size = Vector2(current_width, current_height)
 
@@ -85,7 +94,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("furnace"):
 		in_furnace = true
 		furnace = area.get_parent()
-
 	elif area.is_in_group("water"):
 		_quench_steel()
 
@@ -93,23 +101,32 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.is_in_group("furnace"):
 		in_furnace = false
 		furnace = null
-
-		# Allow reheating after hardening
 		if is_hardened:
 			is_hardened = false
 
 func _quench_steel() -> void:
-	# Handle quenching logic
-	is_hardened = true  
-	
-	if heat >= 75:
-		current_status = 4  # Proper quenching
-	elif heat >= 50:
-		current_status = 4  # Poor quenching but still hardened
-	elif heat >= 25:
-		current_status = 0  # Reset to cold stage
-	# If below 25, no change is necessary
+	is_hardened = true
 
-	# Reset heat and update sprite
-	heat = 0  
+	if heat >= 75:
+		current_status = 4  # quenched
+	elif heat >= 50:
+		current_status = 4
+	elif heat >= 25:
+		current_status = 0
+
+	heat = 0
 	sprite.play(status_array[current_status])
+
+	if get_parent().has_method("_update_value_and_quality"):
+		get_parent()._update_value_and_quality()
+
+
+func _on_area_2d_body_entered(body: Node) -> void:
+	if body.is_in_group("grindstone"):
+		touching_grindstone = true
+		grindstone = body.get_parent()
+
+func _on_area_2d_body_exited(body: Node) -> void:
+	if body.is_in_group("grindstone"):
+		touching_grindstone = false
+		grindstone = null

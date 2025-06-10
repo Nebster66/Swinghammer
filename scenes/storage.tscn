@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://5l6m3lfa2x14"]
+[gd_scene load_steps=7 format=3 uid="uid://5l6m3lfa2x14"]
 
 [ext_resource type="Texture2D" uid="uid://q33bqdktw8tm" path="res://sprites/SmallCage.png" id="1_nnb4j"]
+[ext_resource type="Theme" uid="uid://bfmhlm5dgdsvs" path="res://sprites/UI/UI.tres" id="2_taf4q"]
+[ext_resource type="FontFile" uid="uid://cmowptq4b1wr" path="res://sprites/UI/celtic-bitty.ttf" id="3_8jlsl"]
+[ext_resource type="Script" uid="uid://md0y8ooggkey" path="res://scenes/buy_ui.gd" id="3_cexes"]
+[ext_resource type="Texture2D" uid="uid://wurd7minik0y" path="res://sprites/UI/UI_Medieval.png" id="4_8jlsl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jlsl"]
+atlas = ExtResource("4_8jlsl")
+region = Rect2(228, 69, 7, 5)
 
 [node name="Storage" type="StaticBody2D"]
+script = ExtResource("3_cexes")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -9)
@@ -10,3 +19,52 @@ texture = ExtResource("1_nnb4j")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-10, -7, -10, 7, 10, 7, 10, -7, 9, -7, 9, 5, -9, 5, -9, -7)
+
+[node name="BuyUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("2_taf4q")
+
+[node name="Label" type="Label" parent="BuyUI"]
+layout_mode = 0
+offset_left = -7.0
+offset_top = -20.0
+offset_right = 7.0
+offset_bottom = -17.0
+theme_override_constants/shadow_offset_y = 1
+text = "1"
+horizontal_alignment = 2
+
+[node name="BuyButton" type="Button" parent="BuyUI"]
+layout_mode = 0
+offset_left = -15.0
+offset_top = 4.0
+offset_right = 13.0
+offset_bottom = 20.0
+theme = ExtResource("2_taf4q")
+theme_override_fonts/font = ExtResource("3_8jlsl")
+text = "Buy"
+
+[node name="Confirm" type="Button" parent="BuyUI"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = -26.0
+offset_right = 24.0
+offset_bottom = -7.0
+theme = ExtResource("2_taf4q")
+icon = SubResource("AtlasTexture_8jlsl")
+
+[node name="HSlider" type="HSlider" parent="BuyUI"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -15.0
+offset_right = 10.0
+offset_bottom = -13.0
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+rounded = true
+
+[connection signal="pressed" from="BuyUI/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="BuyUI/Confirm" to="." method="_on_confirm_pressed"]
+[connection signal="value_changed" from="BuyUI/HSlider" to="." method="_on_h_slider_value_changed"]

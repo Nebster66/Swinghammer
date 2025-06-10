@@ -1,23 +1,23 @@
 extends Light2D
 
-# Parameters to control the flicker effect
-var flicker_speed : float = 0.1 # How fast the flicker changes
-var flicker_strength : float = 0.2 # How much the light flickers
-
-# Timer to control the flicker
-var flicker_timer : float = 0.0
+var flicker_speed: float = 0.1
+var flicker_strength: float = 0.2
+var flicker_timer: float = 0.0
+var flicker_enabled: bool = true
 
 func _ready():
-	randomize() # Ensures randomisation when the scene starts
+	randomize()
+	add_to_group("flicker_lights")
 
 func _process(delta):
-	# Update the flicker timer
-	flicker_timer += delta
-	
-	# If the timer has reached the flicker speed, change the light energy
-	if flicker_timer >= flicker_speed:
-		# Set the energy to a random value within the base range +/- the strength
-		self.energy = 1.0 + randf_range(-flicker_strength, flicker_strength)
-		
-		# Reset the timer
-		flicker_timer = 0.0
+	if flicker_enabled:
+		flicker_timer += delta
+		if flicker_timer >= flicker_speed:
+			self.energy = 1.0 + randf_range(-flicker_strength, flicker_strength)
+			flicker_timer = 0.0
+	else:
+		self.energy = 1.0
+
+
+func set_flicker_enabled(enabled: bool) -> void:
+	flicker_enabled = enabled

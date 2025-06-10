@@ -9,7 +9,7 @@ var original_hotspot = Vector2(3, 3)  # Hotspot in the original 32x32 image
 
 func _ready() -> void:
 	set_cursor(open)
-
+		
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.is_pressed():

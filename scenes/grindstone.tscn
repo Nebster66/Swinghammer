@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bq6qm4o33g2vc"]
+[gd_scene load_steps=21 format=3 uid="uid://bq6qm4o33g2vc"]
 
 [ext_resource type="Script" uid="uid://v1c6spol7yya" path="res://scripts/grindstone.gd" id="1_04qjp"]
 [ext_resource type="Texture2D" uid="uid://ryidaqtpkka2" path="res://sprites/Grindstone16x16-Sheet.png" id="1_pe5b1"]
+[ext_resource type="Texture2D" uid="uid://c8m11pbq36mu3" path="res://shaders/point_light_grad.tres" id="2_87wgy"]
 [ext_resource type="PackedScene" uid="uid://b36brkot0lgsi" path="res://scenes/FX/spark_particle.tscn" id="2_xs0td"]
+[ext_resource type="Script" uid="uid://6i82qnbeinjo" path="res://scripts/point_light_flicker.gd" id="3_eho8i"]
 [ext_resource type="PackedScene" uid="uid://ckj2w2r14xiur" path="res://scenes/FX/point_smoke.tscn" id="4_hu6vm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_igdog"]
@@ -104,6 +106,15 @@ height = 12.0
 [node name="Grindstone" type="Area2D"]
 script = ExtResource("1_04qjp")
 
+[node name="PointLightFlicker" type="PointLight2D" parent="." groups=["flicker"]]
+z_index = 1
+position = Vector2(0, -9)
+color = Color(0.761045, 0.573057, 0, 1)
+range_z_max = 3
+texture = ExtResource("2_87wgy")
+texture_scale = 0.5
+script = ExtResource("3_eho8i")
+
 [node name="SparkParticle" parent="." instance=ExtResource("2_xs0td")]
 light_mask = 2
 visibility_layer = 2
@@ -119,7 +130,7 @@ sprite_frames = SubResource("SpriteFrames_vk1s1")
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_xbhpa")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["grindstone"]]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, -2)

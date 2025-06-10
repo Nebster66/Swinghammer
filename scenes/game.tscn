@@ -1,16 +1,15 @@
-[gd_scene load_steps=39 format=4 uid="uid://dwe482lrkiq6d"]
+[gd_scene load_steps=41 format=4 uid="uid://dwe482lrkiq6d"]
 
 [ext_resource type="PackedScene" uid="uid://c2sojmd64xekr" path="res://scenes/backgrounds.tscn" id="1_0tnpc"]
 [ext_resource type="Script" uid="uid://cndoxmecjneg6" path="res://scripts/game.gd" id="1_37s47"]
 [ext_resource type="Script" uid="uid://iy6oxgq8bq3g" path="res://scripts/camera_2d.gd" id="1_264po"]
 [ext_resource type="PackedScene" uid="uid://bq6qm4o33g2vc" path="res://scenes/grindstone.tscn" id="1_pt2ai"]
-[ext_resource type="PackedScene" uid="uid://cw5hxbyevw7wx" path="res://scenes/UI.tscn" id="1_trtic"]
 [ext_resource type="Script" uid="uid://bsc1mlio8enbu" path="res://scripts/canvas_modulate.gd" id="2_dinhu"]
 [ext_resource type="Script" uid="uid://b6g5ior1rbt3x" path="res://scripts/world_audio_manager.gd" id="3_rysoc"]
 [ext_resource type="PackedScene" uid="uid://5lob7krc5d7q" path="res://scenes/anvil.tscn" id="4_o70pb"]
 [ext_resource type="AudioStream" uid="uid://dwn4usgtk7mmr" path="res://audio/ambient/Ambience, Forest, Birds, Wind In Trees 01 SND0432.wav" id="4_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://c6whenmval02w" path="res://scenes/water_barrel.tscn" id="5_81pp8"]
-[ext_resource type="PackedScene" uid="uid://bo65u3polrgnm" path="res://scenes/particle_preload.tscn" id="6_pl11u"]
+[ext_resource type="AudioStream" uid="uid://dl2sdbks2u8ch" path="res://audio/sfx/Games, Video, Game Console, Nintendo Wii, Controller, Button Press, Sequence SND26388 1.wav" id="6_bhx41"]
 [ext_resource type="PackedScene" uid="uid://c4sd00yqu6ur8" path="res://scenes/wall_pin.tscn" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://4b64dirk2j2m" path="res://scenes/swing_hammer.tscn" id="8_dv0jt"]
 [ext_resource type="PackedScene" uid="uid://ckj2w2r14xiur" path="res://scenes/FX/point_smoke.tscn" id="8_e1j6l"]
@@ -25,6 +24,9 @@
 [ext_resource type="PackedScene" uid="uid://chtesvodkalij" path="res://scenes/main_menu.tscn" id="18_ssvqc"]
 [ext_resource type="Script" uid="uid://b7kigekk4x4gv" path="res://scripts/menu_button.gd" id="20_5newe"]
 [ext_resource type="Texture2D" uid="uid://wurd7minik0y" path="res://sprites/UI/UI_Medieval.png" id="21_bt5mj"]
+[ext_resource type="PackedScene" uid="uid://buvkgchgi8y0h" path="res://scenes/sell_area.tscn" id="21_qnb83"]
+[ext_resource type="PackedScene" uid="uid://mh4qg17q1dt0" path="res://scenes/ui.tscn" id="23_bt5mj"]
+[ext_resource type="Script" uid="uid://bvx6ho3dewbmq" path="res://scenes/ui.gd" id="24_bhx41"]
 
 [sub_resource type="Curve" id="Curve_w57v7"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -75,7 +77,7 @@ polygon = PackedVector2Array(-32, 29.6, -32, 40, 32, 40, 32, 29.6)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e1j6l"]
 polygon = PackedVector2Array(5.2, 23.6, 5.2, 24, 3.2, 24, 3.2, 24.4, 6, 26.8, 6, 28.4, 5, 29.6, 8.6, 29.6, 7.6, 28.4, 7.6, 27.6, 8.4, 25.2, 9.6, 24.4, 9.6, 23.6)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1j6l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl11u"]
 atlas = ExtResource("21_bt5mj")
 region = Rect2(226, 98, 12, 12)
 
@@ -84,9 +86,9 @@ script = ExtResource("1_37s47")
 
 [node name="Util" type="Node2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="Util"]
+[node name="Camera2D" type="Camera2D" parent="Util" groups=["camera"]]
 process_mode = 3
-position = Vector2(0, -171)
+position = Vector2(0, -342)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 script = ExtResource("1_264po")
@@ -102,28 +104,26 @@ stream = ExtResource("4_ssvqc")
 volume_db = -20.0
 bus = &"Music"
 
-[node name="GameMarker" type="Marker2D" parent="Util"]
+[node name="ButtonSound" type="AudioStreamPlayer" parent="Util/WorldAudioManager"]
+stream = ExtResource("6_bhx41")
+volume_db = -10.0
 
 [node name="MainMenuMarker" type="Marker2D" parent="Util"]
-position = Vector2(0, -171)
+position = Vector2(0, -342)
 
-[node name="PreloadArea" type="CanvasLayer" parent="."]
-layer = -1
-visible = false
-
-[node name="ParticlePreload" parent="PreloadArea" instance=ExtResource("6_pl11u")]
-position = Vector2(-104, -70)
+[node name="GameMarker" type="Marker2D" parent="Util"]
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
 follow_viewport_enabled = true
+follow_viewport_scale = 0.5
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Background"]
 script = ExtResource("2_dinhu")
 
 [node name="Backgrounds" parent="Background" instance=ExtResource("1_0tnpc")]
-position = Vector2(0, -99)
-scale = Vector2(0.25, 0.25)
+position = Vector2(0, -198)
+scale = Vector2(0.5, 0.5)
 
 [node name="PointSmoke" parent="Background" instance=ExtResource("8_e1j6l")]
 position = Vector2(150, -78)
@@ -184,7 +184,7 @@ position = Vector2(-3, 24)
 position = Vector2(67, 24)
 
 [node name="Grindstone" parent="Inside" instance=ExtResource("1_pt2ai")]
-position = Vector2(-64, 57)
+position = Vector2(-62, 57)
 
 [node name="Furnace2" parent="Inside" instance=ExtResource("9_ir15t")]
 z_index = 1
@@ -199,26 +199,29 @@ position = Vector2(-144, 51)
 [node name="SwingHammer" parent="Inside" instance=ExtResource("8_dv0jt")]
 position = Vector2(-64, 15)
 
-[node name="SteelBar" parent="Inside" instance=ExtResource("10_epqd0")]
+[node name="Bars" type="Node2D" parent="Inside"]
+position = Vector2(-64, 15)
+
+[node name="SteelBar" parent="Inside/Bars" instance=ExtResource("10_epqd0")]
 z_index = -1
-position = Vector2(-101, 47)
+position = Vector2(-49, 32)
 rotation = 1.74533
 
-[node name="SteelBar2" parent="Inside" instance=ExtResource("10_epqd0")]
+[node name="SteelBar2" parent="Inside/Bars" instance=ExtResource("10_epqd0")]
 z_index = -1
-position = Vector2(-97, 47)
+position = Vector2(-45, 32)
 rotation = 1.74533
 tile_count = 9
 
-[node name="SteelBar4" parent="Inside" instance=ExtResource("10_epqd0")]
+[node name="SteelBar4" parent="Inside/Bars" instance=ExtResource("10_epqd0")]
 z_index = -1
-position = Vector2(-93, 47)
+position = Vector2(-41, 32)
 rotation = 1.74533
 tile_count = 10
 
-[node name="SteelBar5" parent="Inside" instance=ExtResource("10_epqd0")]
+[node name="SteelBar5" parent="Inside/Bars" instance=ExtResource("10_epqd0")]
 z_index = -1
-position = Vector2(-89, 47)
+position = Vector2(-37, 32)
 rotation = 1.74533
 tile_count = 9
 
@@ -272,10 +275,15 @@ position = Vector2(-64, 25)
 position = Vector2(-60, 25)
 
 [node name="Storage" parent="Inside" instance=ExtResource("15_ca42v")]
-position = Vector2(-96, 58)
+position = Vector2(-108, 58)
+steel_bar_scene = ExtResource("10_epqd0")
+steel_bar_parent = NodePath("../Bars")
 
 [node name="Punch" parent="Inside" instance=ExtResource("17_1kice")]
 position = Vector2(-64, 32)
+
+[node name="SellArea" parent="Inside" instance=ExtResource("21_qnb83")]
+position = Vector2(-84, 58)
 
 [node name="Roof" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -293,76 +301,75 @@ visible = false
 z_index = 3
 position = Vector2(-153, -6)
 
-[node name="TEST" type="CanvasLayer" parent="."]
-visible = false
-offset = Vector2(0, -19.83)
-scale = Vector2(1.645, 0.55)
-transform = Transform2D(1.645, 0, 0, 0.55, 0, -19.83)
+[node name="Menu" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="TileMapLayer" type="TileMapLayer" parent="TEST"]
-tile_map_data = PackedByteArray("AAD9////AAAMAAAAAAD+////AAAMAAAAAAD/////AAAMAAAAAAAAAP//AAAMAAAAAAABAP//AAAMAAAAAAACAP//AAAMAAAAAAD8////AAAMAAAAAAADAP//AAAMAAAAAAA=")
-tile_set = ExtResource("8_gee14")
-
-[node name="TileMapLayer2" type="TileMapLayer" parent="TEST"]
-tile_map_data = PackedByteArray("AAD9////AAAHAAAAAAACAP//AAAHAAAAAAD+////AAAHAAAAAAD/////AAAHAAAAAAAAAP//AAAHAAAAAAABAP//AAAHAAAAAAA=")
-tile_set = ExtResource("8_gee14")
-
-[node name="CanvasModulate2" type="CanvasModulate" parent="TEST"]
-script = ExtResource("2_dinhu")
-
-[node name="UI" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-
-[node name="MainMenu" parent="UI" instance=ExtResource("18_ssvqc")]
+[node name="MainMenu" parent="Menu" instance=ExtResource("18_ssvqc")]
 offset_left = -159.0
-offset_top = -267.0
+offset_top = -438.0
 offset_right = 161.0
-offset_bottom = -87.0
+offset_bottom = -258.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Title2" type="Label" parent="UI/MainMenu"]
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 128
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+
+[node name="UI" parent="UI" instance=ExtResource("23_bt5mj")]
+script = ExtResource("24_bhx41")
+
+[node name="MenuButton" type="Button" parent="UI/UI" groups=["button"]]
 process_mode = 3
-visible = false
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 37.0
-offset_top = 244.0
-offset_right = -45.0
-offset_bottom = 268.0
-grow_horizontal = 2
-theme_override_constants/shadow_outline_size = 0
-theme_override_font_sizes/font_size = 8
-text = "Swinghammer"
+layout_mode = 0
+offset_left = 8.0
+offset_top = 0.5
+offset_right = 28.0
+offset_bottom = 28.5
+icon = SubResource("AtlasTexture_pl11u")
+script = ExtResource("20_5newe")
+
+[node name="Dollar" type="Label" parent="UI/UI"]
+layout_mode = 0
+offset_left = 39.5
+offset_top = 12.0
+offset_right = 48.5
+offset_bottom = 26.0
+theme_override_constants/shadow_offset_y = 1
+text = "$"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuButton" type="Button" parent="UI/MainMenu"]
-process_mode = 3
+[node name="Money" type="Label" parent="UI/UI"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 176.0
-offset_right = 22.0
-offset_bottom = 204.0
-icon = SubResource("AtlasTexture_e1j6l")
-script = ExtResource("20_5newe")
+offset_left = 49.25
+offset_top = 12.0
+offset_right = 58.25
+offset_bottom = 26.0
+theme_override_constants/shadow_offset_y = 1
+text = "14.00"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="UI" parent="UI" instance=ExtResource("1_trtic")]
+[node name="Date" type="Label" parent="UI/UI"]
 visible = false
-z_index = 4096
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -750.0
-offset_top = -459.0
-offset_right = -750.0
-offset_bottom = -459.0
+layout_mode = 0
+offset_left = 115.75
+offset_top = 12.0
+offset_right = 128.75
+offset_bottom = 26.0
+theme_override_constants/shadow_offset_y = 1
+text = "Spring Day - 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="start_game" from="UI/MainMenu" to="Util/Camera2D" method="_on_main_menu_start_game"]
-[connection signal="start_game" from="UI/MainMenu" to="Util/WorldAudioManager" method="_on_main_menu_start_game"]
-[connection signal="start_game" from="UI/MainMenu" to="Inside/Furnace2" method="_on_main_menu_start_game"]
-[connection signal="menu_return" from="UI/MainMenu/MenuButton" to="Util/Camera2D" method="_on_menu_button_menu_return"]
-[connection signal="pressed" from="UI/MainMenu/MenuButton" to="UI/MainMenu/MenuButton" method="_on_pressed"]
+[connection signal="purchase" from="Inside/Storage" to="UI/UI" method="_on_storage_purchase"]
+[connection signal="sell" from="Inside/SellArea" to="UI/UI" method="_on_sell_area_sell"]
+[connection signal="start_game" from="Menu/MainMenu" to="Util/Camera2D" method="_on_main_menu_start_game"]
+[connection signal="start_game" from="Menu/MainMenu" to="Util/WorldAudioManager" method="_on_main_menu_start_game"]
+[connection signal="start_game" from="Menu/MainMenu" to="Inside/Furnace2" method="_on_main_menu_start_game"]
+[connection signal="start_game" from="Menu/MainMenu" to="UI/UI" method="_on_main_menu_start_game"]
+[connection signal="menu_return" from="UI/UI/MenuButton" to="Util/Camera2D" method="_on_menu_button_menu_return"]
+[connection signal="menu_return" from="UI/UI/MenuButton" to="UI/UI" method="_on_menu_button_menu_return"]
+[connection signal="pressed" from="UI/UI/MenuButton" to="Util/Camera2D" method="_on_menu_button_2_pressed"]
+[connection signal="pressed" from="UI/UI/MenuButton" to="UI/UI/MenuButton" method="_on_pressed"]

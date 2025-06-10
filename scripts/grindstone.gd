@@ -2,6 +2,7 @@ extends Area2D
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sparks: GPUParticles2D = $SparkParticle
 @onready var smoke: GPUParticles2D = $PointSmoke
+@onready var point_light: PointLight2D = $PointLightFlicker
 
 var on = false
 
@@ -12,6 +13,7 @@ func _ready() -> void:
 	await get_tree().create_timer(0.2).timeout
 	sparks.emitting = false
 	smoke.emitting = false
+	point_light.enabled = false
 	animation.pause()
 	
 	input_pickable = true
@@ -35,8 +37,10 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("steel") and on:
 		sparks.emitting = true
 		smoke.emitting = true
+		point_light.enabled = true
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("steel") and on:
 		sparks.emitting = false
 		smoke.emitting = false
+		point_light.enabled = false

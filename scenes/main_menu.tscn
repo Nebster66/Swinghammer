@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://chtesvodkalij"]
+[gd_scene load_steps=5 format=3 uid="uid://chtesvodkalij"]
 
 [ext_resource type="Theme" uid="uid://bfmhlm5dgdsvs" path="res://sprites/UI/UI.tres" id="1_l6cm7"]
 [ext_resource type="Script" uid="uid://bp5qa5sc4xlkr" path="res://scripts/main_menu.gd" id="2_ekxnf"]
 [ext_resource type="FontFile" uid="uid://cmowptq4b1wr" path="res://sprites/UI/celtic-bitty.ttf" id="3_bqqt6"]
+[ext_resource type="AudioStream" uid="uid://coaw75bax1mx6" path="res://audio/sfx/Games, Video, Medieval, GUI, Select, Sword Maker SND63099.wav" id="3_wu84c"]
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -40,27 +41,30 @@ custom_minimum_size = Vector2(320, 87)
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="StartButton" type="Button" parent="CenterContainer/MenuButtons"]
+[node name="StartButton" type="Button" parent="CenterContainer/MenuButtons" groups=["button"]]
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
 text = "Start"
 flat = true
 
-[node name="OptionsButton" type="Button" parent="CenterContainer/MenuButtons"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CenterContainer/MenuButtons/StartButton"]
+stream = ExtResource("3_wu84c")
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/MenuButtons" groups=["button"]]
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
 text = "Options
 "
 flat = true
 
-[node name="CreditsButton" type="Button" parent="CenterContainer/MenuButtons"]
+[node name="CreditsButton" type="Button" parent="CenterContainer/MenuButtons" groups=["button"]]
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
 text = "Credits
 "
 flat = true
 
-[node name="QuitButton" type="Button" parent="CenterContainer/MenuButtons"]
+[node name="QuitButton" type="Button" parent="CenterContainer/MenuButtons" groups=["button"]]
 layout_mode = 2
 theme = ExtResource("1_l6cm7")
 text = "Quit"
@@ -83,16 +87,16 @@ custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 alignment = 1
 
-[node name="DisplayButton" type="Button" parent="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu"]
+[node name="DisplayButton" type="Button" parent="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu" groups=["button"]]
 layout_mode = 2
 text = "Display"
 
-[node name="SoundButton" type="Button" parent="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu"]
+[node name="SoundButton" type="Button" parent="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu" groups=["button"]]
 layout_mode = 2
 text = "Sound
 "
 
-[node name="AccessButton" type="Button" parent="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu"]
+[node name="AccessButton" type="Button" parent="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu" groups=["button"]]
 layout_mode = 2
 text = "Accessability"
 
@@ -101,7 +105,7 @@ visible = false
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="DisplayMode" type="CheckBox" parent="CenterContainer/OptionsMenu/HBoxContainer/DisplayMenu"]
+[node name="DisplayMode" type="CheckBox" parent="CenterContainer/OptionsMenu/HBoxContainer/DisplayMenu" groups=["button"]]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/OptionsMenu/HBoxContainer/DisplayMenu/DisplayMode"]
@@ -113,6 +117,38 @@ offset_bottom = 17.0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 1
 text = "Fullscreen"
+
+[node name="AccessabilityMenu" type="VBoxContainer" parent="CenterContainer/OptionsMenu/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="FlipHammer" type="CheckBox" parent="CenterContainer/OptionsMenu/HBoxContainer/AccessabilityMenu" groups=["button"]]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/OptionsMenu/HBoxContainer/AccessabilityMenu/FlipHammer"]
+layout_mode = 2
+offset_left = 25.0
+offset_top = 15.0
+offset_right = 145.0
+offset_bottom = 17.0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+text = "Flip Hammer"
+
+[node name="Flicker" type="CheckBox" parent="CenterContainer/OptionsMenu/HBoxContainer/AccessabilityMenu" groups=["button"]]
+layout_mode = 2
+button_pressed = true
+
+[node name="Label" type="Label" parent="CenterContainer/OptionsMenu/HBoxContainer/AccessabilityMenu/Flicker"]
+layout_mode = 2
+offset_left = 25.0
+offset_top = 15.0
+offset_right = 145.0
+offset_bottom = 17.0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+text = "Flicker"
 
 [node name="VolumeMenu" type="VBoxContainer" parent="CenterContainer/OptionsMenu/HBoxContainer"]
 visible = false
@@ -174,7 +210,7 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="BackButton" type="Button" parent="CenterContainer/OptionsMenu"]
+[node name="BackButton" type="Button" parent="CenterContainer/OptionsMenu" groups=["button"]]
 layout_mode = 2
 text = "Back"
 
@@ -196,7 +232,7 @@ SFX from Soundly"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackButton" type="Button" parent="CenterContainer/CreditsMenu"]
+[node name="BackButton" type="Button" parent="CenterContainer/CreditsMenu" groups=["button"]]
 layout_mode = 2
 text = "Back"
 
@@ -206,7 +242,10 @@ text = "Back"
 [connection signal="pressed" from="CenterContainer/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu/DisplayButton" to="." method="_on_display_button_pressed"]
 [connection signal="pressed" from="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu/SoundButton" to="." method="_on_sound_button_pressed"]
+[connection signal="pressed" from="CenterContainer/OptionsMenu/HBoxContainer/CatagoryMenu/AccessButton" to="." method="_on_access_button_pressed"]
 [connection signal="toggled" from="CenterContainer/OptionsMenu/HBoxContainer/DisplayMenu/DisplayMode" to="." method="_on_display_mode_toggled"]
+[connection signal="toggled" from="CenterContainer/OptionsMenu/HBoxContainer/AccessabilityMenu/FlipHammer" to="." method="_on_flip_hammer_toggled"]
+[connection signal="toggled" from="CenterContainer/OptionsMenu/HBoxContainer/AccessabilityMenu/Flicker" to="." method="_on_flicker_toggled"]
 [connection signal="value_changed" from="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer/MainVolumeSlider" to="." method="_on_main_volume_slider_value_changed"]
 [connection signal="value_changed" from="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer2/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer3/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
