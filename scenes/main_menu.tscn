@@ -36,7 +36,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MenuButtons" type="VBoxContainer" parent="CenterContainer"]
-visible = false
 custom_minimum_size = Vector2(320, 87)
 layout_mode = 2
 theme_override_constants/separation = 4
@@ -71,6 +70,7 @@ text = "Quit"
 flat = true
 
 [node name="OptionsMenu" type="VBoxContainer" parent="CenterContainer"]
+visible = false
 custom_minimum_size = Vector2(320, 130)
 layout_mode = 2
 theme_override_constants/separation = 16
@@ -228,7 +228,8 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_fonts/font = ExtResource("3_bqqt6")
 text = "Developed by Ben Bevan
 Made in Godot 4.4
-SFX from Soundly"
+SFX from Soundly
+Special thanks to Mergery Wanjiru (Design)"
 horizontal_alignment = 1
 vertical_alignment = 1
 

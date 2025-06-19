@@ -1,0 +1,39 @@
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://c4von25adeh0"]
+
+[ext_resource type="Texture2D" uid="uid://lulrnpehuxkb" path="res://sprites/Tilesets/N_WorkshopSpriteSheet64x64.png" id="2_4cj4t"]
+[ext_resource type="Texture2D" uid="uid://nug31fviwt4m" path="res://sprites/CobbbleFloor_Tint.png" id="7_73nbw"]
+[ext_resource type="Texture2D" uid="uid://xp1xe3fdo254" path="res://sprites/Tilesets/WorkshopSpriteSheet_Tint.png" id="8_1tvje"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s12y3"]
+texture = ExtResource("7_73nbw")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_s12y3"]
+diffuse_texture = ExtResource("8_1tvje")
+normal_texture = ExtResource("2_4cj4t")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8e6ls"]
+texture = SubResource("CanvasTexture_s12y3")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/6 = SubResource("TileSetAtlasSource_s12y3")
+sources/7 = SubResource("TileSetAtlasSource_8e6ls")

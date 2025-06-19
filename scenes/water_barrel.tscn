@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6whenmval02w"]
+[gd_scene load_steps=15 format=3 uid="uid://c6whenmval02w"]
 
 [ext_resource type="Texture2D" uid="uid://dyydpux4tfsiu" path="res://sprites/WaterBarrelBack32x32.png" id="1_h2g4q"]
 [ext_resource type="Script" uid="uid://cfe6gcclioctd" path="res://scripts/water_barrel.gd" id="1_o1smg"]
@@ -9,17 +9,22 @@
 [ext_resource type="Script" uid="uid://detdewkbqa1r2" path="res://scripts/particles.gd" id="5_u0vdu"]
 [ext_resource type="AudioStream" uid="uid://cfjlbmnpqpvyf" path="res://audio/sfx/Boiling1.wav" id="6_83wg6"]
 [ext_resource type="Material" uid="uid://2ynjcpj4oos2" path="res://scenes/FX/Process_Materials/steam.tres" id="8_gg5by"]
+[ext_resource type="Texture2D" uid="uid://chmoq0v4i21x8" path="res://sprites/Tilesets/BarrelTransparent.png" id="10_gg5by"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_83wg6"]
 diffuse_texture = ExtResource("2_mfqub")
 normal_texture = ExtResource("4_3sf3w")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82j84"]
-size = Vector2(14, 21)
+size = Vector2(16, 23)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u0vdu"]
 streams_count = 1
 stream_0/stream = ExtResource("6_83wg6")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_gg5by"]
+diffuse_texture = ExtResource("10_gg5by")
+normal_texture = ExtResource("4_3sf3w")
 
 [node name="WaterBarrel" type="StaticBody2D"]
 z_index = -1
@@ -29,7 +34,7 @@ script = ExtResource("1_o1smg")
 z_index = 1
 texture = ExtResource("1_h2g4q")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Barrel" type="Sprite2D" parent="."]
 z_index = 2
 texture = SubResource("CanvasTexture_83wg6")
 
@@ -57,11 +62,15 @@ process_material = ExtResource("8_gg5by")
 [node name="Area2D" type="Area2D" parent="." groups=["water"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 1.5)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_82j84")
 
 [node name="BoilingAudio" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_u0vdu")
+
+[node name="BarrelTransparent" type="Sprite2D" parent="."]
+z_index = 2
+texture = SubResource("CanvasTexture_gg5by")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

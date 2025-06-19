@@ -1,0 +1,71 @@
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dyte1bmoe4cnr"]
+
+[ext_resource type="Texture2D" uid="uid://xp1xe3fdo254" path="res://sprites/Tilesets/WorkshopSpriteSheet_Tint.png" id="1_c4ovd"]
+[ext_resource type="Texture2D" uid="uid://bcgpnr0excin3" path="res://sprites/Tilesets/WorkshopSpriteSheet_Stone.png" id="2_ccbf4"]
+[ext_resource type="Texture2D" uid="uid://8up8bjqdl3fh" path="res://sprites/Tilesets/WorkshopSpriteSheet_Stone_Slate_Tint.png" id="3_ip2dq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8e6ls"]
+texture = ExtResource("1_c4ovd")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sba8j"]
+texture = ExtResource("2_ccbf4")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qambf"]
+texture = ExtResource("3_ip2dq")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_8e6ls")
+sources/1 = SubResource("TileSetAtlasSource_sba8j")
+sources/2 = SubResource("TileSetAtlasSource_qambf")

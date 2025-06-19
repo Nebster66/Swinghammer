@@ -1,0 +1,54 @@
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://2xnt1qt4uxmi"]
+
+[ext_resource type="Texture2D" uid="uid://xp1xe3fdo254" path="res://sprites/Tilesets/WorkshopSpriteSheet_Tint.png" id="1_bbn8b"]
+[ext_resource type="Texture2D" uid="uid://lulrnpehuxkb" path="res://sprites/Tilesets/N_WorkshopSpriteSheet64x64.png" id="2_6cssp"]
+[ext_resource type="Texture2D" uid="uid://8up8bjqdl3fh" path="res://sprites/Tilesets/WorkshopSpriteSheet_Stone_Slate_Tint.png" id="3_6cssp"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_s12y3"]
+diffuse_texture = ExtResource("1_bbn8b")
+normal_texture = ExtResource("2_6cssp")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8e6ls"]
+texture = SubResource("CanvasTexture_s12y3")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v3c8m"]
+texture = ExtResource("3_6cssp")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_8e6ls")
+sources/1 = SubResource("TileSetAtlasSource_v3c8m")

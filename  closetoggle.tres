@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=3 format=3 uid="uid://c80n0ernrn5q8"]
+
+[ext_resource type="Texture2D" uid="uid://wurd7minik0y" path="res://sprites/UI/UI_Medieval.png" id="1_6au2t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js0lu"]
+atlas = ExtResource("1_6au2t")
+region = Rect2(22, 117, 4, 8)
+
+[resource]
+texture = SubResource("AtlasTexture_js0lu")

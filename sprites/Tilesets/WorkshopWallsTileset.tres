@@ -1,12 +1,17 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://d02fmsbyyx0vp"]
+[gd_resource type="TileSet" load_steps=18 format=3 uid="uid://d02fmsbyyx0vp"]
 
 [ext_resource type="Texture2D" uid="uid://j4rg0d40ghfk" path="res://sprites/WorkshopSpriteSheet.png" id="1_hmxsy"]
-[ext_resource type="Texture2D" uid="uid://bwttdoj178ye6" path="res://sprites/N_WorkshopSpriteSheet.png" id="2_4yjj4"]
+[ext_resource type="Texture2D" uid="uid://lulrnpehuxkb" path="res://sprites/Tilesets/N_WorkshopSpriteSheet64x64.png" id="2_s12y3"]
 [ext_resource type="Texture2D" uid="uid://cychv4a6ibsns" path="res://sprites/CobbbleFloor.png" id="3_4yjj4"]
+[ext_resource type="Texture2D" uid="uid://bcgpnr0excin3" path="res://sprites/Tilesets/WorkshopSpriteSheet_Stone.png" id="4_r440x"]
+[ext_resource type="Texture2D" uid="uid://myu2lwan2e3p" path="res://sprites/Tilesets/WorkshopSpriteSheet_Stone_Slate.png" id="5_2ap5e"]
+[ext_resource type="Texture2D" uid="uid://8up8bjqdl3fh" path="res://sprites/Tilesets/WorkshopSpriteSheet_Stone_Slate_Tint.png" id="6_y40oy"]
+[ext_resource type="Texture2D" uid="uid://nug31fviwt4m" path="res://sprites/CobbbleFloor_Tint.png" id="7_qambf"]
+[ext_resource type="Texture2D" uid="uid://xp1xe3fdo254" path="res://sprites/Tilesets/WorkshopSpriteSheet_Tint.png" id="7_s12y3"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_kj48w"]
 diffuse_texture = ExtResource("1_hmxsy")
-normal_texture = ExtResource("2_4yjj4")
+normal_texture = ExtResource("2_s12y3")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_05j3k"]
 texture = SubResource("CanvasTexture_kj48w")
@@ -33,7 +38,101 @@ texture = ExtResource("3_4yjj4")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ap5e"]
+texture = ExtResource("4_r440x")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y40oy"]
+texture = ExtResource("5_2ap5e")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qambf"]
+texture = ExtResource("6_y40oy")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s12y3"]
+texture = ExtResource("7_qambf")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_s12y3"]
+diffuse_texture = ExtResource("7_s12y3")
+normal_texture = ExtResource("2_s12y3")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8e6ls"]
+texture = SubResource("CanvasTexture_s12y3")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+
 [resource]
 tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetAtlasSource_05j3k")
+sources/6 = SubResource("TileSetAtlasSource_s12y3")
+sources/7 = SubResource("TileSetAtlasSource_8e6ls")
+sources/5 = SubResource("TileSetAtlasSource_qambf")
+sources/3 = SubResource("TileSetAtlasSource_y40oy")
+sources/2 = SubResource("TileSetAtlasSource_2ap5e")
 sources/1 = SubResource("TileSetAtlasSource_r440x")
+sources/0 = SubResource("TileSetAtlasSource_05j3k")

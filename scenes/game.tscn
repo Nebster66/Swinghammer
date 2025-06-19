@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://dwe482lrkiq6d"]
+[gd_scene load_steps=58 format=4 uid="uid://dwe482lrkiq6d"]
 
 [ext_resource type="PackedScene" uid="uid://c2sojmd64xekr" path="res://scenes/backgrounds.tscn" id="1_0tnpc"]
 [ext_resource type="Script" uid="uid://cndoxmecjneg6" path="res://scripts/game.gd" id="1_37s47"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ckj2w2r14xiur" path="res://scenes/FX/point_smoke.tscn" id="8_e1j6l"]
 [ext_resource type="TileSet" uid="uid://d02fmsbyyx0vp" path="res://sprites/Tilesets/WorkshopWallsTileset.tres" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://brbhxoo1l6rv6" path="res://scenes/small_furnace.tscn" id="9_ir15t"]
+[ext_resource type="TileSet" uid="uid://2xnt1qt4uxmi" path="res://sprites/Tilesets/WallsTileset.tres" id="10_7025r"]
 [ext_resource type="PackedScene" uid="uid://1ditmnxofc8i" path="res://scenes/steel_bar.tscn" id="10_epqd0"]
 [ext_resource type="PackedScene" uid="uid://mkdjq3hd1lae" path="res://scenes/wall_torch.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://biliu5ug840bo" path="res://scenes/mouse.tscn" id="11_kvpfn"]
@@ -25,8 +26,20 @@
 [ext_resource type="Script" uid="uid://b7kigekk4x4gv" path="res://scripts/menu_button.gd" id="20_5newe"]
 [ext_resource type="Texture2D" uid="uid://wurd7minik0y" path="res://sprites/UI/UI_Medieval.png" id="21_bt5mj"]
 [ext_resource type="PackedScene" uid="uid://buvkgchgi8y0h" path="res://scenes/sell_area.tscn" id="21_qnb83"]
+[ext_resource type="Theme" uid="uid://bfmhlm5dgdsvs" path="res://sprites/UI/UI.tres" id="22_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://mh4qg17q1dt0" path="res://scenes/ui.tscn" id="23_bt5mj"]
-[ext_resource type="Script" uid="uid://bvx6ho3dewbmq" path="res://scenes/ui.gd" id="24_bhx41"]
+[ext_resource type="Script" uid="uid://dfthiwy2w1akj" path="res://scripts/buy_sell_ui.gd" id="23_qouja"]
+[ext_resource type="Script" uid="uid://bvx6ho3dewbmq" path="res://scripts/ui.gd" id="24_bhx41"]
+[ext_resource type="Texture2D" uid="uid://cbsqa20efrncg" path="res://sprites/Tilesets/WallSignSpriteSheet.png" id="24_wljb1"]
+[ext_resource type="Texture2D" uid="uid://ck543l5fn55wk" path="res://sprites/OakPlankPanels.png" id="25_wljb1"]
+[ext_resource type="FontFile" uid="uid://cmowptq4b1wr" path="res://sprites/UI/celtic-bitty.ttf" id="26_qouja"]
+[ext_resource type="Texture2D" uid="uid://c106m35tpun2m" path="res://sprites/OakPlankPanelsV2.png" id="26_wljb1"]
+[ext_resource type="StyleBox" uid="uid://c80n0ernrn5q8" path="res:// closetoggle.tres" id="29_gxtfn"]
+[ext_resource type="StyleBox" uid="uid://dpjdkrx2k3bxs" path="res://drawtoggle.tres" id="29_js0lu"]
+[ext_resource type="AudioStream" uid="uid://dwigw72ob277t" path="res://audio/sfx/Communications, Cellphone, Smartphone, Pick Up, Slide, Wood Surface SND134590 1.wav" id="30_twgab"]
+[ext_resource type="TileSet" uid="uid://dyte1bmoe4cnr" path="res://sprites/Tilesets/RoofTileset.tres" id="32_m4url"]
+[ext_resource type="PackedScene" uid="uid://cjj50fc53hmi1" path="res://scenes/day_summary.tscn" id="33_nepv3"]
+[ext_resource type="FontFile" uid="uid://cia2j0iwjvar4" path="res://sprites/PixelOperator8.ttf" id="37_02fa5"]
 
 [sub_resource type="Curve" id="Curve_w57v7"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -77,6 +90,56 @@ polygon = PackedVector2Array(-32, 29.6, -32, 40, 32, 40, 32, 29.6)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e1j6l"]
 polygon = PackedVector2Array(5.2, 23.6, 5.2, 24, 3.2, 24, 3.2, 24.4, 6, 26.8, 6, 28.4, 5, 29.6, 8.6, 29.6, 7.6, 28.4, 7.6, 27.6, 8.4, 25.2, 9.6, 24.4, 9.6, 23.6)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v2yb1"]
+texture = ExtResource("24_wljb1")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_js0lu"]
+texture = ExtResource("25_wljb1")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gxtfn"]
+texture = ExtResource("26_wljb1")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_js0lu"]
+sources/0 = SubResource("TileSetAtlasSource_v2yb1")
+sources/1 = SubResource("TileSetAtlasSource_js0lu")
+sources/2 = SubResource("TileSetAtlasSource_gxtfn")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_pl11u"]
 atlas = ExtResource("21_bt5mj")
 region = Rect2(226, 98, 12, 12)
@@ -113,13 +176,16 @@ position = Vector2(0, -342)
 
 [node name="GameMarker" type="Marker2D" parent="Util"]
 
+[node name="DayNightManager" type="Node" parent="Util" node_paths=PackedStringArray("canvas_modulates") groups=["DayNightManager"]]
+script = ExtResource("2_dinhu")
+canvas_modulates = [NodePath("../../Background/CanvasModulate"), NodePath("../../Inside/CanvasModulate"), NodePath("../../Roof/CanvasModulate")]
+
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 0.5
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Background"]
-script = ExtResource("2_dinhu")
 
 [node name="Backgrounds" parent="Background" instance=ExtResource("1_0tnpc")]
 position = Vector2(0, -198)
@@ -145,16 +211,15 @@ follow_viewport_enabled = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Inside"]
 color = Color(0.864675, 0.864675, 0.864675, 1)
-script = ExtResource("2_dinhu")
 
 [node name="TilemapLayers" type="Node2D" parent="Inside"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Inside/TilemapLayers"]
-tile_map_data = PackedByteArray("AAD+/wAAAAACAAAAAAAAAAAAAAACAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAD//wAAAAAEAAAAAAD9/wAAAAAAAAAAAAD9/wEAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAA=")
-tile_set = ExtResource("8_gee14")
+[node name="WallTileLayer" type="TileMapLayer" parent="Inside/TilemapLayers"]
+tile_map_data = PackedByteArray("AAD+/wAAAAACAAAAAAAAAAAAAAACAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAD//wAAAAAEAAAAAAD9/wAAAAAAAAAAAAA=")
+tile_set = ExtResource("10_7025r")
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="Inside/TilemapLayers"]
-tile_map_data = PackedByteArray("AAD//wAAAAAKAAAAAAD+/wAAAAAJAAAAAAABAAAAAAAJAAAAAAA=")
+[node name="DecorTileLayer" type="TileMapLayer" parent="Inside/TilemapLayers"]
+tile_map_data = PackedByteArray("AAABAAAAAgAJAAAAAAD+/wAAAgAJAAAAAAD//wAAAgAKAAAAAAD9/wEABgAAAAAAAAD+/wEABgAAAAAAAAD//wEABgAAAAAAAAAAAAEABgAAAAAAAAABAAEABgAAAAAAAAACAAEABgAAAAAAAAA=")
 tile_set = ExtResource("8_gee14")
 
 [node name="WorldBorder" type="StaticBody2D" parent="Inside"]
@@ -184,7 +249,7 @@ position = Vector2(-3, 24)
 position = Vector2(67, 24)
 
 [node name="Grindstone" parent="Inside" instance=ExtResource("1_pt2ai")]
-position = Vector2(-62, 57)
+position = Vector2(-64, 57)
 
 [node name="Furnace2" parent="Inside" instance=ExtResource("9_ir15t")]
 z_index = 1
@@ -194,36 +259,17 @@ position = Vector2(92, 35)
 position = Vector2(32, 49)
 
 [node name="WaterBarrel" parent="Inside" instance=ExtResource("5_81pp8")]
-position = Vector2(-144, 51)
+position = Vector2(-96, 51)
 
 [node name="SwingHammer" parent="Inside" instance=ExtResource("8_dv0jt")]
-position = Vector2(-64, 15)
+position = Vector2(-58, 15)
 
 [node name="Bars" type="Node2D" parent="Inside"]
-position = Vector2(-64, 15)
+position = Vector2(-101, -15)
 
 [node name="SteelBar" parent="Inside/Bars" instance=ExtResource("10_epqd0")]
 z_index = -1
-position = Vector2(-49, 32)
-rotation = 1.74533
-
-[node name="SteelBar2" parent="Inside/Bars" instance=ExtResource("10_epqd0")]
-z_index = -1
-position = Vector2(-45, 32)
-rotation = 1.74533
-tile_count = 9
-
-[node name="SteelBar4" parent="Inside/Bars" instance=ExtResource("10_epqd0")]
-z_index = -1
-position = Vector2(-41, 32)
-rotation = 1.74533
-tile_count = 10
-
-[node name="SteelBar5" parent="Inside/Bars" instance=ExtResource("10_epqd0")]
-z_index = -1
-position = Vector2(-37, 32)
-rotation = 1.74533
-tile_count = 9
+position = Vector2(-52, 26)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Inside"]
 offset_left = -180.0
@@ -257,7 +303,7 @@ scale = Vector2(5, 2.5)
 occluder = SubResource("OccluderPolygon2D_e1j6l")
 
 [node name="HammerPins" type="Node2D" parent="Inside"]
-position = Vector2(-2, -14)
+position = Vector2(4, -14)
 
 [node name="WallPin" parent="Inside/HammerPins" instance=ExtResource("7_u5sy4")]
 position = Vector2(-65, 25)
@@ -266,7 +312,7 @@ position = Vector2(-65, 25)
 position = Vector2(-59, 25)
 
 [node name="HammerPins2" type="Node2D" parent="Inside"]
-position = Vector2(-2, 7)
+position = Vector2(-9, -7)
 
 [node name="WallPin" parent="Inside/HammerPins2" instance=ExtResource("7_u5sy4")]
 position = Vector2(-64, 25)
@@ -274,27 +320,98 @@ position = Vector2(-64, 25)
 [node name="WallPin2" parent="Inside/HammerPins2" instance=ExtResource("7_u5sy4")]
 position = Vector2(-60, 25)
 
+[node name="Punch" parent="Inside" instance=ExtResource("17_1kice")]
+position = Vector2(-71, 18)
+
 [node name="Storage" parent="Inside" instance=ExtResource("15_ca42v")]
-position = Vector2(-108, 58)
+position = Vector2(-144, 26)
 steel_bar_scene = ExtResource("10_epqd0")
 steel_bar_parent = NodePath("../Bars")
 
-[node name="Punch" parent="Inside" instance=ExtResource("17_1kice")]
-position = Vector2(-64, 32)
-
 [node name="SellArea" parent="Inside" instance=ExtResource("21_qnb83")]
-position = Vector2(-84, 58)
+position = Vector2(-144, 58)
+
+[node name="BuySellUI" type="Control" parent="Inside"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -192.0
+offset_right = -160.0
+offset_bottom = 64.0
+theme = ExtResource("22_sgl2t")
+script = ExtResource("23_qouja")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Inside/BuySellUI"]
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAEAAAAAAAEAAQAAAAIAAAAAAAIAAQAAAAMAAAAAAAMAAQAAAAAAAAABAAAAAQACAAEAAAABAAMAAQACAAAAAAAHAP//AQAAAAAAAAAIAP//AQABAAAAAAAJAP//AQACAAAAAAABAAIAAQACAAMAAAABAAEAAQACAAIAAAA=")
+tile_set = SubResource("TileSet_js0lu")
+
+[node name="Length" type="Label" parent="Inside/BuySellUI"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 29.0
+offset_right = 23.0
+offset_bottom = 32.0
+theme_override_constants/shadow_offset_y = 1
+text = "1"
+horizontal_alignment = 2
+
+[node name="Confirm_Sell" type="Button" parent="Inside/BuySellUI" groups=["button"]]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 48.0
+offset_right = 31.0
+offset_bottom = 64.0
+theme = ExtResource("22_sgl2t")
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("26_qouja")
+text = "Sell"
+icon_alignment = 1
+
+[node name="AccessUI" type="Button" parent="Inside/BuySellUI" groups=["button"]]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 35.0
+offset_right = 38.0
+offset_bottom = 49.0
+theme = ExtResource("22_sgl2t")
+theme_override_styles/hover = ExtResource("29_js0lu")
+theme_override_styles/pressed = ExtResource("29_js0lu")
+theme_override_styles/normal = ExtResource("29_gxtfn")
+toggle_mode = true
+icon_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Inside/BuySellUI/AccessUI"]
+stream = ExtResource("30_twgab")
+
+[node name="Confirm" type="Button" parent="Inside/BuySellUI" groups=["button"]]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 29.0
+offset_bottom = 24.0
+theme = ExtResource("22_sgl2t")
+theme_override_fonts/font = ExtResource("26_qouja")
+text = "Buy"
+
+[node name="HSlider" type="HSlider" parent="Inside/BuySellUI"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 36.0
+offset_right = 25.0
+offset_bottom = 38.0
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+rounded = true
 
 [node name="Roof" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Roof"]
-script = ExtResource("2_dinhu")
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="Roof"]
+[node name="RoofTileLayer" type="TileMapLayer" parent="Roof"]
 z_index = 2
 tile_map_data = PackedByteArray("AAD9////AAAFAAAAAAD/////AAAFAAAAAAAAAP//AAAFAAAAAAABAP//AAAGAAAAAAACAP//AAAFAAAAAAD+////AAAFAAAAAAA=")
-tile_set = ExtResource("8_gee14")
+tile_set = ExtResource("32_m4url")
 
 [node name="ShopSign" parent="Roof" instance=ExtResource("13_kvuet")]
 visible = false
@@ -305,11 +422,18 @@ position = Vector2(-153, -6)
 follow_viewport_enabled = true
 
 [node name="MainMenu" parent="Menu" instance=ExtResource("18_ssvqc")]
-offset_left = -159.0
-offset_top = -438.0
-offset_right = 161.0
-offset_bottom = -258.0
+offset_left = -160.0
+offset_top = -432.0
+offset_right = 160.0
+offset_bottom = -252.0
 metadata/_edit_use_anchors_ = true
+
+[node name="DaySummary" parent="Menu" instance=ExtResource("33_nepv3")]
+visible = false
+offset_left = -160.0
+offset_top = -432.0
+offset_right = 160.0
+offset_bottom = -252.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 128
@@ -329,47 +453,81 @@ offset_bottom = 28.5
 icon = SubResource("AtlasTexture_pl11u")
 script = ExtResource("20_5newe")
 
-[node name="Dollar" type="Label" parent="UI/UI"]
+[node name="Money" type="Label" parent="UI/UI"]
 layout_mode = 0
-offset_left = 39.5
+offset_left = 38.75
 offset_top = 12.0
-offset_right = 48.5
+offset_right = 83.75
 offset_bottom = 26.0
 theme_override_constants/shadow_offset_y = 1
-text = "$"
+text = "$14.00"
+vertical_alignment = 1
+
+[node name="Positive" type="Label" parent="UI/UI/Money"]
+layout_mode = 0
+offset_left = 44.75
+offset_top = -3.25
+offset_right = 80.75
+offset_bottom = 10.75
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.545098, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("37_02fa5")
+text = "+$10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Money" type="Label" parent="UI/UI"]
+[node name="Negative" type="Label" parent="UI/UI/Money"]
 layout_mode = 0
-offset_left = 49.25
-offset_top = 12.0
-offset_right = 58.25
-offset_bottom = 26.0
+offset_left = 46.25
+offset_top = -3.25
+offset_right = 82.25
+offset_bottom = 10.75
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.556863, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 1
-text = "14.00"
+theme_override_fonts/font = ExtResource("37_02fa5")
+text = "-$10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Date" type="Label" parent="UI/UI"]
-visible = false
 layout_mode = 0
-offset_left = 115.75
-offset_top = 12.0
-offset_right = 128.75
-offset_bottom = 26.0
+offset_left = 128.5
+offset_top = 11.75
+offset_right = 228.5
+offset_bottom = 25.75
 theme_override_constants/shadow_offset_y = 1
 text = "Spring Day - 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="EndDayButton" type="Button" parent="UI/UI" groups=["button"]]
+visible = false
+layout_mode = 0
+offset_left = 250.5
+offset_top = 8.75
+offset_right = 314.5
+offset_bottom = 24.75
+text = "End Day"
+script = ExtResource("20_5newe")
+
 [connection signal="purchase" from="Inside/Storage" to="UI/UI" method="_on_storage_purchase"]
 [connection signal="sell" from="Inside/SellArea" to="UI/UI" method="_on_sell_area_sell"]
+[connection signal="pressed" from="Inside/BuySellUI/Confirm_Sell" to="Inside/SellArea" method="_on_confirm_sell_pressed"]
+[connection signal="toggled" from="Inside/BuySellUI/AccessUI" to="Inside/BuySellUI" method="_on_access_ui_toggled"]
+[connection signal="pressed" from="Inside/BuySellUI/Confirm" to="Inside/Storage" method="_on_confirm_pressed"]
+[connection signal="value_changed" from="Inside/BuySellUI/HSlider" to="Inside/Storage" method="_on_h_slider_value_changed"]
 [connection signal="start_game" from="Menu/MainMenu" to="Util/Camera2D" method="_on_main_menu_start_game"]
 [connection signal="start_game" from="Menu/MainMenu" to="Util/WorldAudioManager" method="_on_main_menu_start_game"]
 [connection signal="start_game" from="Menu/MainMenu" to="Inside/Furnace2" method="_on_main_menu_start_game"]
 [connection signal="start_game" from="Menu/MainMenu" to="UI/UI" method="_on_main_menu_start_game"]
+[connection signal="start_game" from="Menu/DaySummary" to="Util/Camera2D" method="_on_day_summary_start_game"]
+[connection signal="start_game" from="Menu/DaySummary" to="UI/UI" method="_on_day_summary_start_game"]
 [connection signal="menu_return" from="UI/UI/MenuButton" to="Util/Camera2D" method="_on_menu_button_menu_return"]
 [connection signal="menu_return" from="UI/UI/MenuButton" to="UI/UI" method="_on_menu_button_menu_return"]
 [connection signal="pressed" from="UI/UI/MenuButton" to="Util/Camera2D" method="_on_menu_button_2_pressed"]
 [connection signal="pressed" from="UI/UI/MenuButton" to="UI/UI/MenuButton" method="_on_pressed"]
+[connection signal="menu_return" from="UI/UI/EndDayButton" to="Util/Camera2D" method="_on_end_day_button_menu_return"]
+[connection signal="menu_return" from="UI/UI/EndDayButton" to="UI/UI" method="_on_menu_button_menu_return"]
+[connection signal="pressed" from="UI/UI/EndDayButton" to="UI/UI/EndDayButton" method="_on_pressed"]

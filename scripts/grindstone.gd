@@ -3,6 +3,8 @@ extends Area2D
 @onready var sparks: GPUParticles2D = $SparkParticle
 @onready var smoke: GPUParticles2D = $PointSmoke
 @onready var point_light: PointLight2D = $PointLightFlicker
+@onready var on_audio: AudioStreamPlayer2D = $OnAudio
+@onready var grind_audio: AudioStreamPlayer2D = $GrindAudio
 
 var on = false
 
@@ -27,20 +29,24 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		if event.is_pressed() and not animation.is_playing():
 			animation.play()
 			on = true
+			on_audio.play()
 		elif event.is_pressed() and animation.is_playing():
 			animation.pause()
 			on = false
 			sparks.emitting = false
 			smoke.emitting = false
+			on_audio.stop()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("steel") and on:
 		sparks.emitting = true
 		smoke.emitting = true
 		point_light.enabled = true
+		grind_audio.play()
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("steel") and on:
 		sparks.emitting = false
 		smoke.emitting = false
 		point_light.enabled = false
+		grind_audio.stop()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bq6qm4o33g2vc"]
+[gd_scene load_steps=23 format=3 uid="uid://bq6qm4o33g2vc"]
 
 [ext_resource type="Script" uid="uid://v1c6spol7yya" path="res://scripts/grindstone.gd" id="1_04qjp"]
 [ext_resource type="Texture2D" uid="uid://ryidaqtpkka2" path="res://sprites/Grindstone16x16-Sheet.png" id="1_pe5b1"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://b36brkot0lgsi" path="res://scenes/FX/spark_particle.tscn" id="2_xs0td"]
 [ext_resource type="Script" uid="uid://6i82qnbeinjo" path="res://scripts/point_light_flicker.gd" id="3_eho8i"]
 [ext_resource type="PackedScene" uid="uid://ckj2w2r14xiur" path="res://scenes/FX/point_smoke.tscn" id="4_hu6vm"]
+[ext_resource type="AudioStream" uid="uid://dr7kkj7huxrim" path="res://audio/sfx/Rocks, Movement, Stone, Slab, Scrape SND18188.wav" id="7_tdjr8"]
+[ext_resource type="AudioStream" uid="uid://cs6t5b8jdsgqi" path="res://audio/sfx/Weapons, Sword, Sabre, Slide, Cut, Scrape, Impact SND70656.wav" id="8_5ydyj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_igdog"]
 atlas = ExtResource("1_pe5b1")
@@ -140,6 +142,14 @@ shape = SubResource("CapsuleShape2D_xbhpa")
 position = Vector2(0, -8)
 emitting = false
 amount = 10
+
+[node name="OnAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_tdjr8")
+volume_db = -10.0
+pitch_scale = 2.0
+
+[node name="GrindAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_5ydyj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

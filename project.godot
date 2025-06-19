@@ -11,12 +11,12 @@ config_version=5
 [application]
 
 config/name="Swinghammer"
-config/version="0.2.2"
+config/version="0.4.0"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/use_filter=false
 boot_splash/image="uid://unleetilas4g"
-config/icon="uid://dr1pr6wmk8gg7"
+config/icon="uid://d1g550bsvi4yb"
 
 [autoload]
 
@@ -43,6 +43,7 @@ camera=""
 flicker=""
 button=""
 grindstone=""
+DayNightManager=""
 
 [input]
 
@@ -66,3 +67,4 @@ WHEEL_DOWN={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
