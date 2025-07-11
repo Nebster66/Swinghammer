@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://xmx0p1xhxwsn" path="res://scenes/steel_tile.tscn" id="2_cfhqu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a63ry"]
-size = Vector2(6.5, 6)
+size = Vector2(6, 6)
 
 [node name="SteelBar" type="RigidBody2D" groups=["steel"]]
 input_pickable = true

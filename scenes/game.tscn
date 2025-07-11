@@ -181,6 +181,7 @@ position = Vector2(0, -342)
 
 [node name="DayNightManager" type="Node" parent="Util" node_paths=PackedStringArray("canvas_modulates") groups=["DayNightManager"]]
 script = ExtResource("2_dinhu")
+day_length = 20.0
 canvas_modulates = [NodePath("../../Background/CanvasModulate"), NodePath("../../Inside/CanvasModulate"), NodePath("../../Roof/CanvasModulate")]
 
 [node name="Background" type="CanvasLayer" parent="."]

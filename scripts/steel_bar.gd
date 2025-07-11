@@ -138,10 +138,14 @@ func _get_closest_tile(hit_position: Vector2) -> StaticBody2D:
 
 func _realign_tiles():
 	var next_x = 0
+	var max_height = 0.0
 	for tile in tiles:
-		tile.position.x = next_x
+		tile.position.x = next_x + (tile.current_width / 2)
 		next_x += tile.current_width
+		if tile.current_height > max_height:
+			max_height = tile.current_height
 
 	if collider and collider.shape is RectangleShape2D:
-		collider.shape.size = Vector2(next_x, 2)
-		collider.position.x = (next_x / 2) - 1
+		var shape = collider.shape as RectangleShape2D
+		shape.size = Vector2(next_x, max_height)
+		collider.position = Vector2((next_x / 2) - 0, 0)

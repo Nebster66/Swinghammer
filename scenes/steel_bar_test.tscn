@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp1h14ccyvlea"]
+
+[ext_resource type="Script" uid="uid://bx8uq51tbc57j" path="res://scripts/steel_bar_test.gd" id="1_ir2vj"]
+[ext_resource type="PackedScene" uid="uid://bnt3evjlqtan6" path="res://scenes/steel_tile_test.tscn" id="2_h1v8l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1v8l"]
+
+[node name="SteelBarTest" type="Node2D" groups=["hammer"]]
+z_index = 1
+script = ExtResource("1_ir2vj")
+steel_tile_scene = ExtResource("2_h1v8l")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_h1v8l")

@@ -1,0 +1,25 @@
+Known issues:
+- Gaps between partially forged tiles
+- Barrel transparency may be still too opaque. Could take inspiration from potioncraft pestle and mortar.
+- Hole punch non-functional. Will be hard to implement with current steel logic. Fix steel forging logic before adding hole punch.
+
+Version 0.5.2 - Added Failstate:
+- Game will now declare bankruptcy if player starts new day in debt then prompt to restart game
+
+Version 0.5.1 - Bug Fix:
+- Fixed steel bar collider height which blocked the grindstone contacting the tiles when forged
+
+Version 0.5.0 - Insurance Added, Expand Ratio Tweaks and Bug Fixes:
+- Added insurance that is deducted from wallet at the end of the day.
+- Insurance is displayed on daily summary.
+- Upgrading the workshop decreases insurance for the next day.
+- Fixed view expanding past the workshop when stretching window when UI panel is open.
+- Daily net fixes including text colour and resetting on new day
+- UI code restructure
+
+
+Version 0.4.2 - Expand Aspect Ratio Support:
+- Aspect ratio now set to expand and camera system has been reworked to work with expand
+
+Version 0.4.1 - Bug Fix:
+- Contact monitoring was mistakenly set to 0 when it should have been at least 1. This resulted in the hammer not forging as the collisions were not processed.

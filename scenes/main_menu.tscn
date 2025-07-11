@@ -37,7 +37,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MenuButtons" type="VBoxContainer" parent="CenterContainer"]
-visible = false
 custom_minimum_size = Vector2(320, 87)
 layout_mode = 2
 theme_override_constants/separation = 4
@@ -219,6 +218,7 @@ layout_mode = 2
 text = "Back"
 
 [node name="CreditsMenu" type="VBoxContainer" parent="CenterContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 62)
 layout_mode = 2
 theme_override_constants/separation = 6
@@ -254,6 +254,43 @@ text = "Next"
 layout_mode = 2
 text = "Back"
 
+[node name="VersionLogScreen" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="VersionLog" type="Label" parent="CenterContainer/VersionLogScreen"]
+custom_minimum_size = Vector2(320, 73)
+layout_mode = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("5_8ln24")
+text = "Known issues:
+- Gaps between partially forged tiles
+- Cannot sharpen fully forged tiles, suspected to be, as the tile colliders are smaller than bar collider. Will need to rework forge code to work for indevidual tiles as treating it as a bar with it's own collider is unnecassary and problamatic.
+- Barrel transparency may be still too opaque. Could take inspiration from potioncraft pestle and mortar.
+- Hole punch non-functional. Will be hard to implement with current steel logic. Fix steel forging logic before adding hole punch.
+
+Version 0.5.0 - Insurance Added, Expand Ratio Tweaks and Bug Fixes:
+- Added insurance that is deducted from wallet at the end of the day.
+- Insurance is displayed on daily summary.
+- Upgrading the workshop decreases insurance for the next day.
+- Fixed view expanding past the workshop when stretching window when UI panel is open.
+- Daily net fixes including text colour and resetting on new day
+- UI code restructure
+
+
+Version 0.4.2 - Expand Aspect Ratio Support:
+- Aspect ratio now set to expand and camera system has been reworked to work with expand
+
+Version 0.4.1 - Bug Fix:
+- Contact monitoring was mistakenly set to 0 when it should have been at least 1. This resulted in the hammer not forging as the collisions were not processed."
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="CenterContainer/VersionLogScreen" groups=["button"]]
+layout_mode = 2
+text = "Back"
+
 [connection signal="pressed" from="CenterContainer/MenuButtons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MenuButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
@@ -270,3 +307,4 @@ text = "Back"
 [connection signal="pressed" from="CenterContainer/OptionsMenu/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="CenterContainer/CreditsMenu/Next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="CenterContainer/CreditsMenu/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VersionLogScreen/BackButton" to="." method="_on_back_button_pressed"]

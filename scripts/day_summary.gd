@@ -9,6 +9,9 @@ signal start_game
 @onready var upgrade_roof_button: Button = $CenterContainer/VBoxContainer/HBoxContainer/MenuButtons2/UpgradeRoof # costs $20
 @onready var start_button: Button = $CenterContainer/VBoxContainer/StartButton
 @onready var saw_audio: AudioStreamPlayer2D = $CenterContainer/VBoxContainer/StartButton/SawAudioStreamPlayer2D
+@onready var title: Label = $Title
+@onready var v_box_container: VBoxContainer = $CenterContainer/VBoxContainer
+@onready var bankrupt: VBoxContainer = $CenterContainer/Bankrupt
 
 # money stuff
 @onready var daily_income: Label = $CenterContainer/VBoxContainer/HBoxContainer/MenuButtons/HBoxContainer/DailyIncome
@@ -67,6 +70,16 @@ func _ready() -> void:
 
 
 func _on_start_button_pressed() -> void:
+	
+	## new fail state
+	if ui.money_total_cents < 0:
+		v_box_container.hide()
+		title.hide()
+		bankrupt.show()
+		get_tree().paused = true
+		return
+	##
+	
 	# Apply the visuals of the currently selected upgrade levels
 	apply_upgrade_visuals(walls_tile_layer, walls_current_level, WALLS_SOURCE_IDS)
 	apply_upgrade_visuals(roof_tile_layer, roof_current_level, ROOF_SOURCE_IDS)
@@ -219,3 +232,8 @@ func _tween_label_value(target_node: Object, property_name: String, final_value:
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(target_node, property_name, final_value, duration)
 	return tween
+
+## new button to restart
+func _on_restart_pressed() -> void:
+	get_parent().get_parent().get_tree().reload_current_scene() # parent is viewport layer whose parent is game scene
+##
