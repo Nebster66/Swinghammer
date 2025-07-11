@@ -22,6 +22,8 @@ var max_heat: float = 100.0
 var in_furnace: bool = false
 var furnace: Node2D = null  
 var is_hardened: bool = false  
+var was_quenched_when_hot: bool = false  # <-- NEW
+var quench_stage: int = -1  # 2 or 3 = valid quenching temp stages
 
 # Sharpening properties
 var sharpness: float = 0.0
@@ -35,11 +37,9 @@ var status_array = ["temp_0", "temp_1", "temp_2", "temp_3", "quenched", "sharp"]
 var current_status: int = 0
 
 func _ready() -> void:
-	# Set initial dimensions
 	current_width = initial_width
 	current_height = initial_height
 
-	# Connect signals
 	if not area_2d.is_connected("area_entered", Callable(self, "_on_area_2d_area_entered")):
 		area_2d.connect("area_entered", Callable(self, "_on_area_2d_area_entered"))
 	
@@ -50,7 +50,6 @@ func _ready() -> void:
 	set_process(true)
 
 func _physics_process(delta: float) -> void:
-	# Heat management
 	if in_furnace and furnace:
 		if heat < furnace.temperature:
 			var furnace_heat_cap = (furnace.temperature / furnace.max_temperature) * max_heat
@@ -60,11 +59,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		heat = max(heat - cooling_rate * delta, 0)
 
-	# Update temperature stage if not hardened
 	if not is_hardened:
 		_update_temperature_stage()
 
-	# Sharpening logic
 	if is_hardened and touching_grindstone and grindstone.on and not is_sharpened:
 		sharpness += SHARPEN_RATE * delta
 		sharpness = clamp(sharpness, 0, 100)
@@ -75,10 +72,7 @@ func _physics_process(delta: float) -> void:
 			sprite.play(status_array[current_status])
 
 func _update_temperature_stage() -> void:
-	# Determine the new temperature stage
 	var new_status = clamp(int(heat / 25), 0, 3)
-
-	# Update sprite if the status changes
 	if new_status != current_status:
 		current_status = new_status
 		sprite.play(status_array[current_status])
@@ -94,7 +88,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("furnace"):
 		in_furnace = true
 		furnace = area.get_parent()
-	elif area.is_in_group("water"):
+	elif area.is_in_group("water") and not is_hardened:
 		_quench_steel()
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
@@ -105,15 +99,17 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 			is_hardened = false
 
 func _quench_steel() -> void:
-	is_hardened = true
-
-	if heat >= 75:
-		current_status = 4  # quenched
-	elif heat >= 50:
-		current_status = 4
-	elif heat >= 25:
-		current_status = 0
-
+	if current_status >= 2 and current_status <= 3:
+		is_hardened = true
+		was_quenched_when_hot = true
+		quench_stage = current_status
+		current_status = 4  # "quenched"
+	else:
+		is_hardened = false
+		was_quenched_when_hot = false
+		quench_stage = -1
+		_update_temperature_stage()
+	
 	heat = 0
 	sprite.play(status_array[current_status])
 

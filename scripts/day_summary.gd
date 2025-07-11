@@ -8,6 +8,7 @@ signal start_game
 @onready var walls_tile_layer: TileMapLayer = $"../../Inside/TilemapLayers/WallTileLayer"
 @onready var upgrade_roof_button: Button = $CenterContainer/VBoxContainer/HBoxContainer/MenuButtons2/UpgradeRoof # costs $20
 @onready var start_button: Button = $CenterContainer/VBoxContainer/StartButton
+@onready var saw_audio: AudioStreamPlayer2D = $CenterContainer/VBoxContainer/StartButton/SawAudioStreamPlayer2D
 
 # money stuff
 @onready var daily_income: Label = $CenterContainer/VBoxContainer/HBoxContainer/MenuButtons/HBoxContainer/DailyIncome
@@ -74,8 +75,6 @@ func _on_start_button_pressed() -> void:
 	# If walls are upgraded, disable the walls upgrade button
 	if walls_current_level == 1:
 		upgrade_walls_button.disabled = true
-		# Also disable the roof button if walls are maxed and roof is maxed.
-		# If walls are maxed but roof isn't, the roof button will remain enabled if clicked.
 		if roof_current_level == 2:
 			upgrade_roof_button.disabled = true
 
@@ -86,7 +85,12 @@ func _on_start_button_pressed() -> void:
 
 	start_game.emit()
 	get_tree().paused = false
-	start_audio.play()
+
+	# --- NEW LOGIC: Play saw audio if any upgrade is applied ---
+	if walls_current_level > 0 or roof_current_level > 0:
+		saw_audio.play()
+	else:
+		start_audio.play()
 
 func _on_upgrade_walls_toggled(toggled_on: bool) -> void:
 	# Only allow toggling if the button is not already disabled (meaning, not already maxed out)
@@ -204,13 +208,6 @@ func apply_upgrade_visuals(tilemap_layer: TileMapLayer, current_level: int, sour
 			tilemap_layer.set_cell(cell_coords, target_source_id, current_atlas_coords, current_alternative_tile)
 
 	print("Tileset visual update complete for TileMapLayer: %s to level %d (Source ID: %d)" % [tilemap_layer.name, current_level, target_source_id])
-
-# Function to update all money labels consistently
-func update_money_labels() -> void:
-	# This function is no longer needed for direct text updates or initiating tweens.
-	# The setters on _current_display_total_money_cents handle the label updates for total_money and money.
-	# Daily income, costs, and net will be set directly where their values are calculated.
-	pass
 
 # --- Function to tween a label's value ---
 func _tween_label_value(target_node: Object, property_name: String, final_value: int, duration: float, existing_tween: Tween) -> Tween:

@@ -11,11 +11,17 @@ signal start_game
 @onready var start_button: Button = $CenterContainer/MenuButtons/StartButton
 @onready var access_menu: VBoxContainer = $CenterContainer/OptionsMenu/HBoxContainer/AccessabilityMenu
 @onready var start_audio: AudioStreamPlayer2D = $CenterContainer/MenuButtons/StartButton/AudioStreamPlayer2D
+@onready var display_mode: CheckBox = $CenterContainer/OptionsMenu/HBoxContainer/DisplayMenu/DisplayMode
+@onready var next: Button = $CenterContainer/CreditsMenu/Next
+@onready var credits: Label = $CenterContainer/CreditsMenu/Credits
+@onready var special_thanks: Label = $CenterContainer/CreditsMenu/SpecialThanks
 
 #volume sliders
 @onready var main_volume_slider: HSlider = $CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer/MainVolumeSlider
 @onready var music_volume_slider: HSlider = $CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer2/MusicVolumeSlider
 @onready var sfx_volume_slider: HSlider = $CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer3/SFXVolumeSlider
+
+var toggle : bool = false
 
 func _ready() -> void:
 	menu_buttons.visible = true
@@ -39,6 +45,9 @@ func _ready() -> void:
 	main_volume_slider.step = 0.2
 	music_volume_slider.step = 0.2
 	sfx_volume_slider.step = 0.2
+	
+	if OS.has_feature("web_android") or OS.has_feature("web_ios") or OS.has_feature("android"):
+		display_mode.button_pressed = true
 
 func _on_start_button_pressed() -> void:
 	start_game.emit()
@@ -105,3 +114,16 @@ func _on_access_button_pressed() -> void:
 
 func _on_flicker_toggled(toggled_on: bool) -> void:
 	get_tree().call_group("flicker_lights", "set_flicker_enabled", toggled_on)
+
+
+func _on_next_pressed() -> void:
+	if toggle == false:
+		next.text = "Back"
+		credits.hide()
+		special_thanks.show()
+		toggle = true
+	else:
+		next.text = "Next"
+		special_thanks.hide()
+		credits.show()
+		toggle = false

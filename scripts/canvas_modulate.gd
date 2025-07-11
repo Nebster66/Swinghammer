@@ -1,10 +1,12 @@
-extends Node # Or Node2D, depending on your choice for the manager node
+extends Node
 
-#signal date_updated(new_date_text: String)
+signal disable
+signal enable
 
 # Day/Night Cycle Settings
 @export var day_length: float = 120.0 # Duration of the main DAY and NIGHT phases in seconds
 @export var transition_duration: float = 10.0 # Duration of SUNSET and SUNRISE phases in seconds
+@onready var confirm: Button = $"../../Inside/BuySellUI/Confirm"
 
 # Color Settings
 @export var sunset_colour: Color = Color(1.0, 0.5, 0.3)
@@ -84,6 +86,8 @@ func advance_phase():
 		# Pause the cycle and show the button
 		current_phase = TimeOfDay.PAUSED_END_OF_DAY
 		end_day_button.show()
+		confirm.disabled = true # new and works
+		emit_signal("disable")
 		return # Exit early, don't advance to the next time of day yet
 
 	current_phase = TimeOfDay.values()[(int(current_phase) + 1) % TimeOfDay.values().size()]
@@ -147,4 +151,6 @@ func _on_end_day_button_pressed():
 	update_day_and_season() # Ensure day and season are updated
 	set_target_color() # Set the target color for the new day
 	update_date_label() # Update the label for the new day
+	confirm.disabled = false
+	emit_signal("enable")
 	print("End Day button pressed! Advancing to the next day.")

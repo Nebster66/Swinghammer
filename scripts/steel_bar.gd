@@ -47,19 +47,31 @@ func update_value_and_quality():
 	else:
 		size_quality = 0.5
 
-	# Quenching quality
-	var quenched_count = 0
-	for tile in tiles:
-		if tile.is_hardened:
-			quenched_count += 1
+	# Quenching quality - based on quench stage
+	var stage3_quenched = 0
+	var stage2_quenched = 0
 
+	for tile in tiles:
+		if tile.was_quenched_when_hot:
+			if tile.quench_stage == 3:
+				stage3_quenched += 1
+			elif tile.quench_stage == 2:
+				stage2_quenched += 1
+
+	var total_quenched = stage2_quenched + stage3_quenched
 	var quenching_quality: float
-	if quenched_count == tiles.size():
-		quenching_quality = 2.0
-	elif quenched_count == 0:
+
+	if total_quenched == tiles.size():
+		# Fully quenched, scale based on heat quality
+		var stage3_ratio = float(stage3_quenched) / tiles.size()
+		quenching_quality = lerp(1.5, 2.0, stage3_ratio)
+	elif total_quenched == 0:
 		quenching_quality = 1.0
 	else:
-		quenching_quality = 0.5
+		# Partial quench, lower value
+		var stage3_ratio = float(stage3_quenched) / tiles.size()
+		quenching_quality = lerp(1.0, 1.5, stage3_ratio)
+
 
 	# Sharpness quality
 	var total_sharpness = 0.0

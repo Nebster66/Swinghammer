@@ -11,7 +11,18 @@ config_version=5
 [application]
 
 config/name="Swinghammer"
-config/version="0.4.0"
+config/description="Version 0.4.2 - Expand Aspect Ratio Support:
+Aspect ratio now set to expand and camera system has been reworked to work with expand
+
+Version 0.4.1 - Bug Fix:
+Contact monitoring was mistakenly set to 0 when it should have been at least 1. This resulted in the hammer not forging as the collisions were not processed.
+
+Known issues:
+- Gaps between partially forged tiles
+- Cannot sharpen fully forged tiles, suspected to be, as the tile colliders are smaller than bar collider. Will need to rework forge code to work for indevidual tiles as treating it as a bar with it's own collider is unnecassary and problamatic.
+- Barrel transparency may be still too opaque. Could take inspiration from potioncraft pestle and mortar.
+- Hole punch non-functional. Will be hard to implement with current steel logic. Fix steel forging logic before adding hole punch."
+config/version="0.4.2"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/use_filter=false
@@ -27,6 +38,7 @@ ParticlesCache="res://particles_cache.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 

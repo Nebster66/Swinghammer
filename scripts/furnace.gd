@@ -22,25 +22,44 @@ var cooling_rate: float = 5.0
 # Current volume
 var current_volume: float = -30.0
 
+var disabled: bool = false
+
 func _ready() -> void:
 	update_visuals()
 	set_process(true)
 
 func _process(delta: float) -> void:
+	if disabled:
+		return
+
 	if temperature > min_temperature:
 		temperature = max(min_temperature, temperature - cooling_rate * delta)
 		update_visuals()
 
 func increase_temperature(amount: float) -> void:
+	if disabled:
+		return
+
 	temperature = min(temperature + amount, max_temperature)
 	update_visuals()
 
 func update_visuals() -> void:
+	if disabled:
+		smoke.emitting = true
+		smoke.amount_ratio = 0.2
+
+		flame.emitting = false
+		light.enabled = false
+		fire_area_collider.disabled = true
+		furnace_sound.stop()
+		return
+
 	var temp_ratio := (temperature - min_temperature) / (max_temperature - min_temperature)
 
 	smoke.emitting = true
 	flame.emitting = true
 	light.enabled = true
+	fire_area_collider.disabled = false
 
 	smoke.amount_ratio = max(temp_ratio, 0.2)
 	flame.amount_ratio = max(temp_ratio, 0.2)
@@ -52,6 +71,9 @@ func update_visuals() -> void:
 	light.scale = Vector2.ONE * lerp(min_scale, max_scale, temp_ratio)
 
 func update_furnace_volume(pump_boost: float) -> void:
+	if disabled:
+		return
+
 	# Base volume from temperature
 	var temp_ratio := (temperature - min_temperature) / (max_temperature - min_temperature)
 	var base_volume = lerp(min_volume_db, max_volume_db, temp_ratio)
@@ -61,10 +83,21 @@ func update_furnace_volume(pump_boost: float) -> void:
 
 	# Smoothly interpolate the current volume toward the target volume
 	current_volume = lerp(current_volume, target_volume, volume_fade_speed * get_process_delta_time())
-	
+
 	# Apply the interpolated volume
 	furnace_sound.volume_db = current_volume
 
-
 func _on_main_menu_start_game() -> void:
+	if not disabled:
+		furnace_sound.play()
+
+func _on_day_night_manager_disable() -> void:
+	disabled = true
+	update_visuals()
+	furnace_sound.stop()
+
+func _on_day_night_manager_enable() -> void:
+	await get_tree().create_timer(2.0).timeout
+	disabled = false
+	update_visuals()
 	furnace_sound.play()

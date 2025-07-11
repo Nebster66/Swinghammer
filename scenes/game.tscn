@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://dwe482lrkiq6d"]
+[gd_scene load_steps=61 format=4 uid="uid://dwe482lrkiq6d"]
 
 [ext_resource type="PackedScene" uid="uid://c2sojmd64xekr" path="res://scenes/backgrounds.tscn" id="1_0tnpc"]
 [ext_resource type="Script" uid="uid://cndoxmecjneg6" path="res://scripts/game.gd" id="1_37s47"]
@@ -15,11 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://ckj2w2r14xiur" path="res://scenes/FX/point_smoke.tscn" id="8_e1j6l"]
 [ext_resource type="TileSet" uid="uid://d02fmsbyyx0vp" path="res://sprites/Tilesets/WorkshopWallsTileset.tres" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://brbhxoo1l6rv6" path="res://scenes/small_furnace.tscn" id="9_ir15t"]
+[ext_resource type="Texture2D" uid="uid://bm5ieimrpvm3x" path="res://sprites/Summer7.png" id="10_8ool0"]
 [ext_resource type="TileSet" uid="uid://2xnt1qt4uxmi" path="res://sprites/Tilesets/WallsTileset.tres" id="10_7025r"]
 [ext_resource type="PackedScene" uid="uid://1ditmnxofc8i" path="res://scenes/steel_bar.tscn" id="10_epqd0"]
 [ext_resource type="PackedScene" uid="uid://mkdjq3hd1lae" path="res://scenes/wall_torch.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://biliu5ug840bo" path="res://scenes/mouse.tscn" id="11_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://c02ej5nq6giwy" path="res://scenes/shop_sign.tscn" id="13_kvuet"]
+[ext_resource type="Texture2D" uid="uid://nug31fviwt4m" path="res://sprites/CobbbleFloor_Tint.png" id="13_pr1ej"]
 [ext_resource type="PackedScene" uid="uid://5l6m3lfa2x14" path="res://scenes/storage.tscn" id="15_ca42v"]
 [ext_resource type="PackedScene" uid="uid://dqvwyip6xaq61" path="res://scenes/punch.tscn" id="17_1kice"]
 [ext_resource type="PackedScene" uid="uid://chtesvodkalij" path="res://scenes/main_menu.tscn" id="18_ssvqc"]
@@ -39,6 +41,7 @@
 [ext_resource type="AudioStream" uid="uid://dwigw72ob277t" path="res://audio/sfx/Communications, Cellphone, Smartphone, Pick Up, Slide, Wood Surface SND134590 1.wav" id="30_twgab"]
 [ext_resource type="TileSet" uid="uid://dyte1bmoe4cnr" path="res://sprites/Tilesets/RoofTileset.tres" id="32_m4url"]
 [ext_resource type="PackedScene" uid="uid://cjj50fc53hmi1" path="res://scenes/day_summary.tscn" id="33_nepv3"]
+[ext_resource type="Texture2D" uid="uid://xp1xe3fdo254" path="res://sprites/Tilesets/WorkshopSpriteSheet_Tint.png" id="36_05nbr"]
 [ext_resource type="FontFile" uid="uid://cia2j0iwjvar4" path="res://sprites/PixelOperator8.ttf" id="37_02fa5"]
 
 [sub_resource type="Curve" id="Curve_w57v7"]
@@ -197,6 +200,14 @@ amount = 5
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_e1j6l")
 
+[node name="Summer8" type="Sprite2D" parent="Background"]
+position = Vector2(0, -626)
+rotation = 3.14159
+scale = Vector2(-0.5, 0.5)
+texture = ExtResource("10_8ool0")
+region_enabled = true
+region_rect = Rect2(0, 0, 2304, 416)
+
 [node name="Inside" type="CanvasLayer" parent="."]
 layer = 0
 follow_viewport_enabled = true
@@ -219,8 +230,16 @@ tile_map_data = PackedByteArray("AAD+/wAAAAACAAAAAAAAAAAAAAACAAAAAAACAAAAAAAAAAA
 tile_set = ExtResource("10_7025r")
 
 [node name="DecorTileLayer" type="TileMapLayer" parent="Inside/TilemapLayers"]
-tile_map_data = PackedByteArray("AAABAAAAAgAJAAAAAAD+/wAAAgAJAAAAAAD//wAAAgAKAAAAAAD9/wEABgAAAAAAAAD+/wEABgAAAAAAAAD//wEABgAAAAAAAAAAAAEABgAAAAAAAAABAAEABgAAAAAAAAACAAEABgAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAAAAAgAJAAAAAAD+/wAAAgAJAAAAAAD//wAAAgAKAAAAAAD+/wEABgAAAAAAAAD//wEABgAAAAAAAAAAAAEABgAAAAAAAAABAAEABgAAAAAAAAACAAEABgAAAAAAAAD9/wEABgAAAAAAAAD8/wEABgAAAAAAAAD7/wEABgAAAAAAAAD6/wEABgAAAAAAAAD5/wEABgAAAAAAAAD4/wEABgAAAAAAAAD3/wEABgAAAAAAAAADAAEABgAAAAAAAAAEAAEABgAAAAAAAAAFAAEABgAAAAAAAAAGAAEABgAAAAAAAAAHAAEABgAAAAAAAAAIAAEABgAAAAAAAAACAAAAAAAKAAAAAAD9/wAAAAAJAAAAAAA=")
 tile_set = ExtResource("8_gee14")
+
+[node name="CobbbleFloorTint" type="Sprite2D" parent="Inside/TilemapLayers"]
+position = Vector2(0, 202)
+rotation = -3.14159
+scale = Vector2(18, 24)
+texture = ExtResource("13_pr1ej")
+region_enabled = true
+region_rect = Rect2(0, 23, 64, 9)
 
 [node name="WorldBorder" type="StaticBody2D" parent="Inside"]
 
@@ -418,6 +437,20 @@ visible = false
 z_index = 3
 position = Vector2(-153, -6)
 
+[node name="WorkshopSpriteSheetTint2" type="Sprite2D" parent="Roof"]
+position = Vector2(-194, -37.5)
+scale = Vector2(-1, 1)
+texture = ExtResource("36_05nbr")
+region_enabled = true
+region_rect = Rect2(325, 9, 4, 35)
+
+[node name="WorkshopSpriteSheetTint3" type="Sprite2D" parent="Roof"]
+position = Vector2(194, -37.5)
+scale = Vector2(0.999999, 1)
+texture = ExtResource("36_05nbr")
+region_enabled = true
+region_rect = Rect2(325, 9, 4, 35)
+
 [node name="Menu" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
@@ -512,6 +545,10 @@ offset_bottom = 24.75
 text = "End Day"
 script = ExtResource("20_5newe")
 
+[connection signal="disable" from="Util/DayNightManager" to="Inside/Grindstone" method="_on_day_night_manager_disable"]
+[connection signal="disable" from="Util/DayNightManager" to="Inside/Furnace2" method="_on_day_night_manager_disable"]
+[connection signal="enable" from="Util/DayNightManager" to="Inside/Grindstone" method="_on_day_night_manager_enable"]
+[connection signal="enable" from="Util/DayNightManager" to="Inside/Furnace2" method="_on_day_night_manager_enable"]
 [connection signal="purchase" from="Inside/Storage" to="UI/UI" method="_on_storage_purchase"]
 [connection signal="sell" from="Inside/SellArea" to="UI/UI" method="_on_sell_area_sell"]
 [connection signal="pressed" from="Inside/BuySellUI/Confirm_Sell" to="Inside/SellArea" method="_on_confirm_sell_pressed"]
@@ -529,5 +566,6 @@ script = ExtResource("20_5newe")
 [connection signal="pressed" from="UI/UI/MenuButton" to="Util/Camera2D" method="_on_menu_button_2_pressed"]
 [connection signal="pressed" from="UI/UI/MenuButton" to="UI/UI/MenuButton" method="_on_pressed"]
 [connection signal="menu_return" from="UI/UI/EndDayButton" to="Util/Camera2D" method="_on_end_day_button_menu_return"]
+[connection signal="menu_return" from="UI/UI/EndDayButton" to="UI/UI" method="_on_end_day_button_menu_return"]
 [connection signal="menu_return" from="UI/UI/EndDayButton" to="UI/UI" method="_on_menu_button_menu_return"]
 [connection signal="pressed" from="UI/UI/EndDayButton" to="UI/UI/EndDayButton" method="_on_pressed"]

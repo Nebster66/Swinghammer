@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://chtesvodkalij"]
+[gd_scene load_steps=6 format=3 uid="uid://chtesvodkalij"]
 
 [ext_resource type="Theme" uid="uid://bfmhlm5dgdsvs" path="res://sprites/UI/UI.tres" id="1_l6cm7"]
 [ext_resource type="Script" uid="uid://bp5qa5sc4xlkr" path="res://scripts/main_menu.gd" id="2_ekxnf"]
 [ext_resource type="FontFile" uid="uid://cmowptq4b1wr" path="res://sprites/UI/celtic-bitty.ttf" id="3_bqqt6"]
 [ext_resource type="AudioStream" uid="uid://coaw75bax1mx6" path="res://audio/sfx/Games, Video, Medieval, GUI, Select, Sword Maker SND63099.wav" id="3_wu84c"]
+[ext_resource type="FontFile" uid="uid://cte8qogeshirg" path="res://sprites/UI/celtic-bit.ttf" id="5_8ln24"]
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -36,6 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MenuButtons" type="VBoxContainer" parent="CenterContainer"]
+visible = false
 custom_minimum_size = Vector2(320, 87)
 layout_mode = 2
 theme_override_constants/separation = 4
@@ -122,8 +124,10 @@ text = "Fullscreen"
 visible = false
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="FlipHammer" type="CheckBox" parent="CenterContainer/OptionsMenu/HBoxContainer/AccessabilityMenu" groups=["button"]]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/OptionsMenu/HBoxContainer/AccessabilityMenu/FlipHammer"]
@@ -215,23 +219,36 @@ layout_mode = 2
 text = "Back"
 
 [node name="CreditsMenu" type="VBoxContainer" parent="CenterContainer"]
-visible = false
 custom_minimum_size = Vector2(0, 62)
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 6
 
-[node name="Label" type="Label" parent="CenterContainer/CreditsMenu"]
-custom_minimum_size = Vector2(320, 62)
+[node name="Credits" type="Label" parent="CenterContainer/CreditsMenu"]
+custom_minimum_size = Vector2(320, 50)
 layout_mode = 2
-theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = ExtResource("3_bqqt6")
+theme_override_fonts/font = ExtResource("5_8ln24")
 text = "Developed by Ben Bevan
-Made in Godot 4.4
-SFX from Soundly
-Special thanks to Mergery Wanjiru (Design)"
+Godot 4.4 - Aesprite - Soundly
+Background by Craftpix"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SpecialThanks" type="Label" parent="CenterContainer/CreditsMenu"]
+visible = false
+custom_minimum_size = Vector2(320, 50)
+layout_mode = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("5_8ln24")
+text = "Special Thanks!
+Mergery Wanjiru - Design + Testing
+Owen Bevan - Food + Shelter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Next" type="Button" parent="CenterContainer/CreditsMenu" groups=["button"]]
+layout_mode = 2
+text = "Next"
 
 [node name="BackButton" type="Button" parent="CenterContainer/CreditsMenu" groups=["button"]]
 layout_mode = 2
@@ -251,4 +268,5 @@ text = "Back"
 [connection signal="value_changed" from="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer2/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="CenterContainer/OptionsMenu/HBoxContainer/VolumeMenu/HBoxContainer3/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
 [connection signal="pressed" from="CenterContainer/OptionsMenu/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CenterContainer/CreditsMenu/Next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="CenterContainer/CreditsMenu/BackButton" to="." method="_on_back_button_pressed"]

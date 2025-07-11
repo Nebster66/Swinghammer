@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjj50fc53hmi1"]
+[gd_scene load_steps=6 format=3 uid="uid://cjj50fc53hmi1"]
 
 [ext_resource type="Theme" uid="uid://bfmhlm5dgdsvs" path="res://sprites/UI/UI.tres" id="1_ggjo7"]
 [ext_resource type="Script" uid="uid://vprculpq8em2" path="res://scripts/day_summary.gd" id="2_ggjo7"]
 [ext_resource type="FontFile" uid="uid://cmowptq4b1wr" path="res://sprites/UI/celtic-bitty.ttf" id="3_7xhxj"]
 [ext_resource type="AudioStream" uid="uid://coaw75bax1mx6" path="res://audio/sfx/Games, Video, Medieval, GUI, Select, Sword Maker SND63099.wav" id="3_m7grt"]
+[ext_resource type="AudioStream" uid="uid://1xris07cg3j" path="res://audio/sfx/Games, Video, Medieval, GUI, Building Finished 01 SND63085.wav" id="5_m7grt"]
 
 [node name="DaySummary" type="Control"]
 process_mode = 3
@@ -18,7 +19,7 @@ script = ExtResource("2_ggjo7")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 75.0
+offset_bottom = 63.0
 grow_horizontal = 2
 theme_override_constants/shadow_offset_y = 1
 text = "Daily Summary"
@@ -31,13 +32,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 30.0
+offset_left = -6.0
+offset_top = 35.0
+offset_right = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -57,13 +60,16 @@ alignment = 2
 layout_mode = 2
 theme = ExtResource("1_ggjo7")
 theme_override_constants/shadow_offset_y = 1
-text = "Income:"
+text = "Sales:"
 
 [node name="DailyIncome" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/MenuButtons/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_ggjo7")
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("3_7xhxj")
 text = "$18"
 
@@ -82,9 +88,34 @@ text = "Costs:"
 layout_mode = 2
 theme = ExtResource("1_ggjo7")
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("3_7xhxj")
 text = "$10"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/MenuButtons"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+alignment = 2
+
+[node name="label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/MenuButtons/HBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("1_ggjo7")
+theme_override_constants/shadow_offset_y = 1
+text = "Insurance:"
+
+[node name="DailyInsurance" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/MenuButtons/HBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("1_ggjo7")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_7xhxj")
+text = "$20"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/MenuButtons"]
 custom_minimum_size = Vector2(0, 14)
@@ -101,7 +132,10 @@ text = "Net:"
 layout_mode = 2
 theme = ExtResource("1_ggjo7")
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("3_7xhxj")
 text = "  $8"
 
@@ -120,7 +154,10 @@ text = "Wallet:"
 layout_mode = 2
 theme = ExtResource("1_ggjo7")
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("3_7xhxj")
 text = "$23"
 
@@ -164,6 +201,9 @@ flat = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CenterContainer/VBoxContainer/StartButton"]
 stream = ExtResource("3_m7grt")
+
+[node name="SawAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CenterContainer/VBoxContainer/StartButton"]
+stream = ExtResource("5_m7grt")
 
 [connection signal="toggled" from="CenterContainer/VBoxContainer/HBoxContainer/MenuButtons2/UpgradeWalls" to="." method="_on_upgrade_walls_toggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/HBoxContainer/MenuButtons2/UpgradeRoof" to="." method="_on_upgrade_roof_toggled"]
